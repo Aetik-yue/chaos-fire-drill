@@ -94,19 +94,7 @@ class ChaosInjector {
         await this._executeFault(fault);
       } catch (err) {
         console.error(`Failed to inject fault ${fault.type} on ${fault.target}: ${err.message}`);
-        // Downgrade network-delay/cpu-stress/memory-leak/disk-full/process-crash to kill-random-pod if unavailable
-        if (fault.type === 'network-delay' || fault.type === 'cpu-stress' ||
-            fault.type === 'memory-leak' || fault.type === 'disk-full' || fault.type === 'process-crash') {
-          const originalType = fault.type;
-          fault.type = 'kill-random-pod';
-          fault.description = '随机杀死一个 Pod (' + originalType + '注入失败，降级)';
-          fault.restoreFn = this._getRestoreFn('kill-random-pod', fault.target);
-          try {
-            await this._executeFault(fault);
-          } catch (e2) {
-            console.error(`Fallback injection also failed: ${e2.message}`);
-          }
-        }
+        throw err;
       }
     }
     await this._sleep(3000);

@@ -66,43 +66,53 @@ app.post('/api/game/start', async (req, res) => {
 
     // Inject after short delay (simulates injection time)
     setTimeout(async () => {
-      await injector.inject(faults);
+      try {
+        await injector.inject(faults);
 
-      sm.startDiagnosing(faults);
+        sm.startDiagnosing(faults);
 
-      // Broadcast fault injected event (but not the details — keep it hidden)
-      broadcast({
-        type: 'fault-injected',
-        faultHint: `系统出现异常，请排查！（难度: ${difficulty}）`,
-      });
+        // Broadcast fault injected event (but not the details — keep it hidden)
+        broadcast({
+          type: 'fault-injected',
+          faultHint: `系统出现异常，请排查！（难度: ${difficulty}）`,
+        });
 
-      // Send alert notification after fault injected
-      const webhookUrl = currentMode === 'bookinfo' ? 'http://localhost:30090/productpage' : 'http://localhost:30080';
-      broadcast({
-        type: 'alert-notification',
-        faults: faults.map(f => ({
-          type: f.type,
-          target: f.target,
-          description: f.description,
-        })),
-        mode: currentMode,
-        webhookUrl: currentMode === 'practice' ? null : webhookUrl,
-        severity: difficulty === 'hard' ? 'critical' : 'warning',
-        timestamp: Date.now(),
-      });
+        // Send alert notification after fault injected
+        const webhookUrl = currentMode === 'bookinfo' ? 'http://localhost:30090/productpage' : 'http://localhost:30080';
+        broadcast({
+          type: 'alert-notification',
+          faults: faults.map(f => ({
+            type: f.type,
+            target: f.target,
+            description: f.description,
+          })),
+          mode: currentMode,
+          webhookUrl: currentMode === 'practice' ? null : webhookUrl,
+          severity: difficulty === 'hard' ? 'critical' : 'warning',
+          timestamp: Date.now(),
+        });
 
-      broadcast({ type: 'state-change', state: sm.getState() });
-      broadcast({ type: 'cluster-snapshot', snapshot: k8s.getClusterSnapshot() });
+        broadcast({ type: 'state-change', state: sm.getState() });
+        broadcast({ type: 'cluster-snapshot', snapshot: k8s.getClusterSnapshot() });
 
-      // Reset and start AI diagnosis
-      aiDiagnosisInProgress = false;
-      startAiDiagnosis();
+        // Reset and start AI diagnosis
+        aiDiagnosisInProgress = false;
+        startAiDiagnosis();
 
-      // Start health check loop
-      startHealthCheckLoop(faults);
+        // Start health check loop
+        startHealthCheckLoop(faults);
 
-      // Start timeout timer
-      startTimeoutTimer();
+        // Start timeout timer
+        startTimeoutTimer();
+      } catch (err) {
+        console.error(`Fault injection failed: ${err.message}`);
+        broadcast({ type: 'error', error: `故障注入失败: ${err.message}` });
+        
+        // Transition to DIAGNOSING anyway with failed faults so the game does not get stuck in INJECTING state
+        sm.startDiagnosing(faults);
+        broadcast({ type: 'state-change', state: sm.getState() });
+        startHealthCheckLoop(faults);
+      }
     }, 3000);
 
     res.json({ success: true, state: sm.getState() });
