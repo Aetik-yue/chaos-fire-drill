@@ -19,7 +19,7 @@ const MOCK_MODE = process.env.MOCK_MODE === 'true'; // only mock if explicitly s
 let currentMode = 'practice';
 
 // Initialize modules
-const k8s = new K8sClient({ mockMode: MOCK_MODE, namespace: 'chaos-game' });
+const k8s = new K8sClient({ mockMode: MOCK_MODE, namespace: 'chaos-game', includeInfra: true });
 const sm = new StateMachine();
 const injector = new ChaosInjector(k8s);
 const ai = new AiEngine(k8s);

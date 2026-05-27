@@ -5,6 +5,7 @@ class K8sClient {
   constructor(options = {}) {
     this.mockMode = options.mockMode || false;
     this.namespace = options.namespace || 'chaos-game';
+    this.includeInfra = options.includeInfra || false;
     this._mockState = {
       pods: [
         { name: 'frontend-abc123', ready: '1/1', status: 'Running', restarts: 0, age: '5m', cpu: 15, memory: 22 },
@@ -22,6 +23,11 @@ class K8sClient {
       events: [],
       injectedFault: null,
     };
+
+    if (this.includeInfra) {
+      this._mockState.pods.push({ name: 'game-server-xyz789', ready: '1/1', status: 'Running', restarts: 0, age: '5m', cpu: 8, memory: 42 });
+      this._mockState.deployments.push({ name: 'game-server', ready: '1/1', upToDate: 1, available: 1, age: '10m' });
+    }
   }
 
   _exec(command) {
@@ -396,6 +402,11 @@ class K8sClient {
       events: [],
       injectedFault: null,
     };
+
+    if (this.includeInfra) {
+      this._mockState.pods.push({ name: 'game-server-xyz789', ready: '1/1', status: 'Running', restarts: 0, age: '5m', cpu: 8, memory: 42 });
+      this._mockState.deployments.push({ name: 'game-server', ready: '1/1', upToDate: 1, available: 1, age: '10m' });
+    }
   }
 
   clearMockFault() {
