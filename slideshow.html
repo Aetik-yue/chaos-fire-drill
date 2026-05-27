@@ -1,34 +1,25 @@
 <!DOCTYPE html>
 <html lang="zh-CN">
-
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Chaos Fire Drill — 期末答辩演示幻灯片</title>
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link
-    href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=Outfit:wght@400;500;600;700;800;900&display=swap"
-    rel="stylesheet">
-
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=Outfit:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
+  
   <style>
     /* Premium Slate Light Theme CSS */
     :root {
-      --bg-dark: #f1f5f9;
-      /* Slate-100 */
+      --bg-dark: #f1f5f9; /* Slate-100 */
       --panel-bg: rgba(255, 255, 255, 0.85);
       --card-bg: rgba(255, 255, 255, 0.7);
       --card-hover: rgba(255, 255, 255, 0.95);
-      --accent-blue: #0284c7;
-      /* Vibrant Sky Blue */
-      --accent-green: #10b981;
-      /* Success Emerald */
-      --accent-orange: #ea580c;
-      /* Warning Orange */
-      --text-light: #0f172a;
-      /* Slate-900 */
-      --text-muted: #475569;
-      /* Slate-600 */
+      --accent-blue: #0284c7; /* Vibrant Sky Blue */
+      --accent-green: #10b981; /* Success Emerald */
+      --accent-orange: #ea580c; /* Warning Orange */
+      --text-light: #0f172a; /* Slate-900 */
+      --text-muted: #475569; /* Slate-600 */
       --border-color: rgba(15, 23, 42, 0.08);
       --transition-speed: 0.6s;
     }
@@ -60,12 +51,12 @@
 
     /* Sidebar Slide Index (Premium Sidebar collapsible Panel) */
     .slide-sidebar {
-      width: 280px;
+      width: 300px;
       background: rgba(255, 255, 255, 0.95);
       border-right: 1px solid var(--border-color);
       display: flex;
       flex-direction: column;
-      padding: 2rem 1rem;
+      padding: 2.5rem 1.2rem;
       z-index: 1000;
       transition: transform 0.4s cubic-bezier(0.25, 1, 0.5, 1), width 0.4s;
       flex-shrink: 0;
@@ -73,18 +64,18 @@
     }
 
     .slide-sidebar.collapsed {
-      transform: translateX(-280px);
+      transform: translateX(-300px);
       width: 0;
-      padding: 2rem 0;
+      padding: 2.5rem 0;
       border-right: none;
     }
 
     .sidebar-header {
       font-family: 'Outfit', sans-serif;
-      font-size: 1.5rem;
+      font-size: 1.85rem;
       font-weight: 800;
       color: var(--accent-blue);
-      margin-bottom: 2rem;
+      margin-bottom: 2.5rem;
       padding-left: 0.8rem;
       display: flex;
       align-items: center;
@@ -95,17 +86,17 @@
       list-style: none;
       display: flex;
       flex-direction: column;
-      gap: 0.5rem;
+      gap: 0.6rem;
       overflow-y: auto;
       flex: 1;
       padding-right: 0.2rem;
     }
 
     .index-item {
-      padding: 0.8rem 1rem;
-      border-radius: 8px;
-      font-size: 0.85rem;
-      font-weight: 600;
+      padding: 0.9rem 1.1rem;
+      border-radius: 10px;
+      font-size: 1.15rem;
+      font-weight: 700;
       color: var(--text-muted);
       cursor: pointer;
       transition: all 0.3s ease;
@@ -119,7 +110,7 @@
       font-family: 'Outfit', sans-serif;
       color: var(--accent-blue);
       opacity: 0.8;
-      width: 1.5rem;
+      width: 1.8rem;
     }
 
     .index-item:hover {
@@ -154,14 +145,15 @@
       border: 1px solid var(--border-color);
       color: var(--text-light);
       cursor: pointer;
-      width: 2.8rem;
-      height: 2.8rem;
+      width: 3rem;
+      height: 3rem;
       border-radius: 8px;
       display: flex;
       justify-content: center;
       align-items: center;
       transition: all 0.3s;
       backdrop-filter: blur(10px);
+      font-size: 1.2rem;
     }
 
     .toggle-sidebar-btn:hover {
@@ -185,7 +177,7 @@
       left: 0;
       width: 100%;
       height: 100%;
-      padding: 3rem 5rem 3rem 5rem;
+      padding: 3.5rem 5rem 3.5rem 5rem;
       display: flex;
       flex-direction: column;
       justify-content: flex-start;
@@ -193,8 +185,8 @@
       visibility: hidden;
       transform: rotateX(15deg) translateZ(-800px) translateY(100px);
       transition: opacity var(--transition-speed) cubic-bezier(0.16, 1, 0.3, 1),
-        transform var(--transition-speed) cubic-bezier(0.16, 1, 0.3, 1),
-        visibility var(--transition-speed);
+                  transform var(--transition-speed) cubic-bezier(0.16, 1, 0.3, 1),
+                  visibility var(--transition-speed);
       background: radial-gradient(circle at 50% 30%, rgba(241, 245, 249, 0.6) 0%, #f8fafc 85%);
     }
 
@@ -229,9 +221,9 @@
 
     .slide-title {
       font-family: 'Outfit', sans-serif;
-      font-size: 3.2rem;
+      font-size: 4.2rem;
       font-weight: 900;
-      letter-spacing: -0.8px;
+      letter-spacing: -1px;
       color: var(--text-light);
       background: linear-gradient(180deg, #0f172a 0%, #334155 100%);
       -webkit-background-clip: text;
@@ -240,7 +232,7 @@
 
     .slide-subtitle {
       font-family: 'Outfit', sans-serif;
-      font-size: 1.25rem;
+      font-size: 1.7rem;
       font-weight: 700;
       text-transform: uppercase;
       letter-spacing: 3px;
@@ -288,13 +280,8 @@
       background: var(--accent-blue);
     }
 
-    .card.accent-orange::before {
-      background: var(--accent-orange);
-    }
-
-    .card.accent-green::before {
-      background: var(--accent-green);
-    }
+    .card.accent-orange::before { background: var(--accent-orange); }
+    .card.accent-green::before { background: var(--accent-green); }
 
     .card:hover {
       transform: translateY(-8px);
@@ -304,7 +291,7 @@
     }
 
     .card-title {
-      font-size: 1.9rem;
+      font-size: 2.35rem;
       font-weight: 800;
       margin-bottom: 1.2rem;
       display: flex;
@@ -314,7 +301,7 @@
     }
 
     .card-content {
-      font-size: 1.3rem;
+      font-size: 1.6rem;
       line-height: 1.8;
       color: var(--text-muted);
       flex: 1;
@@ -330,9 +317,9 @@
     }
 
     .card-content li {
-      margin-bottom: 1.4rem;
+      margin-bottom: 1.3rem;
       position: relative;
-      padding-left: 2rem;
+      padding-left: 2.2rem;
     }
 
     .card-content li::before {
@@ -341,16 +328,11 @@
       left: 0;
       color: var(--accent-blue);
       font-weight: bold;
-      font-size: 1.25rem;
+      font-size: 1.5rem;
     }
-
-    .card.accent-orange .card-content li::before {
-      color: var(--accent-orange);
-    }
-
-    .card.accent-green .card-content li::before {
-      color: var(--accent-green);
-    }
+    
+    .card.accent-orange .card-content li::before { color: var(--accent-orange); }
+    .card.accent-green .card-content li::before { color: var(--accent-green); }
 
     /* SVG Topology Graphics */
     .arch-svg-container {
@@ -372,13 +354,8 @@
     }
 
     @keyframes pulse-glow {
-      0% {
-        filter: drop-shadow(0 0 2px rgba(2, 132, 199, 0.3));
-      }
-
-      100% {
-        filter: drop-shadow(0 0 10px rgba(2, 132, 199, 0.6));
-      }
+      0% { filter: drop-shadow(0 0 2px rgba(2, 132, 199, 0.3)); }
+      100% { filter: drop-shadow(0 0 10px rgba(2, 132, 199, 0.6)); }
     }
 
     .flow-line {
@@ -398,32 +375,32 @@
       align-items: flex-start;
       padding-left: 10%;
     }
-
+    
     .logo-hero {
       font-family: 'Outfit', sans-serif;
-      font-size: 6.5rem;
+      font-size: 8.5rem;
       font-weight: 900;
       background: linear-gradient(135deg, var(--accent-blue) 0%, var(--accent-green) 50%, var(--accent-orange) 100%);
       -webkit-background-clip: text;
       -webkit-text-fill-color: transparent;
-      margin-bottom: 1.2rem;
+      margin-bottom: 1.5rem;
       letter-spacing: -3px;
       filter: drop-shadow(0 0 20px rgba(2, 132, 199, 0.15));
     }
 
     .welcome-subtitle {
-      font-size: 2.5rem;
+      font-size: 3.8rem;
       font-weight: 300;
       color: var(--text-light);
-      margin-bottom: 3rem;
+      margin-bottom: 4rem;
       letter-spacing: -0.5px;
     }
 
     .welcome-meta {
-      font-size: 1.25rem;
+      font-size: 1.85rem;
       color: var(--text-muted);
       line-height: 2.2;
-      border-left: 4px solid var(--accent-orange);
+      border-left: 5px solid var(--accent-orange);
       padding-left: 2rem;
     }
 
@@ -445,7 +422,7 @@
       border: none;
       color: var(--text-muted);
       cursor: pointer;
-      font-size: 1.05rem;
+      font-size: 1.4rem;
       font-weight: 700;
       padding: 0.4rem 0.8rem;
       border-radius: 6px;
@@ -460,7 +437,7 @@
     .tab-content {
       display: none;
       font-family: 'Courier New', monospace;
-      font-size: 1rem;
+      font-size: 1.3rem;
       background: #06090f;
       padding: 1.2rem;
       border-radius: 10px;
@@ -476,7 +453,7 @@
 
     /* Bottom Control Bar and Progress */
     .controls-bar {
-      height: 4.5rem;
+      height: 5rem;
       background: rgba(255, 255, 255, 0.95);
       border-top: 1px solid var(--border-color);
       display: flex;
@@ -509,9 +486,9 @@
       border: 1px solid var(--border-color);
       color: var(--text-light);
       cursor: pointer;
-      padding: 0.7rem 1.4rem;
+      padding: 0.8rem 1.6rem;
       border-radius: 10px;
-      font-size: 0.9rem;
+      font-size: 1.35rem;
       font-weight: 700;
       transition: all 0.3s cubic-bezier(0.25, 1, 0.5, 1);
       display: flex;
@@ -533,10 +510,10 @@
 
     .slide-number {
       font-family: 'Outfit', sans-serif;
-      font-size: 1.15rem;
+      font-size: 1.5rem;
       font-weight: 800;
       color: var(--text-muted);
-      width: 4rem;
+      width: 6rem;
       text-align: center;
     }
   </style>
@@ -559,22 +536,25 @@
           <span class="num">02</span> 项目背景与设计理念
         </li>
         <li class="index-item" onclick="jumpToSlide(2)">
-          <span class="num">03</span> 系统架构与生命周期
+          <span class="num">03</span> 承上启下四大实验联动
         </li>
         <li class="index-item" onclick="jumpToSlide(3)">
-          <span class="num">04</span> 项目核心创新点
+          <span class="num">04</span> 系统架构与生命周期
         </li>
         <li class="index-item" onclick="jumpToSlide(4)">
-          <span class="num">05</span> SACS四维科学评分
+          <span class="num">05</span> 创新点
         </li>
         <li class="index-item" onclick="jumpToSlide(5)">
-          <span class="num">06</span> 故障实测成果与健壮度
+          <span class="num">06</span> SACS四维科学评分
         </li>
         <li class="index-item" onclick="jumpToSlide(6)">
-          <span class="num">07</span> 总结收获与未来展望
+          <span class="num">07</span> 故障实测成果与健壮度
         </li>
         <li class="index-item" onclick="jumpToSlide(7)">
-          <span class="num">08</span> 答辩总结与致谢
+          <span class="num">08</span> 总结收获与未来展望
+        </li>
+        <li class="index-item" onclick="jumpToSlide(8)">
+          <span class="num">09</span> 答辩总结与致谢
         </li>
       </ul>
     </div>
@@ -613,170 +593,164 @@
                 <ul>
                   <li><strong>纸上谈兵无实感</strong>：传统的微服务实验多局限于常规搭建与静态配置，当遭遇高并发雪崩、网络延时波动时，学生缺乏高逼真的实机排障与抢修体验。</li>
                   <li><strong>指标观测门槛高</strong>：云原生分布式系统底座极其复杂，可观测性指标泛滥，初学者难以在短时间内形成科学、严密的敏捷运维操作直觉。</li>
-                  <li><strong>大模型落地浅尝辄止</strong>：大模型多被用于协助编写配置代码等“离线”开发场景� <!-- SLIDE 3: SYSTEM ARCHITECTURE -->
-                    <div class="slide">
-                      <div class="slide-header">
-                        <div class="slide-title">2. 系统架构设计与交互拓扑</div>
-                        <div class="slide-subtitle">System Architecture & Topology</div>
-                      </div>
-                      <div class="grid-2">
-                        <div class="card">
-                          <div class="card-title">⚙️ 模块化分层控制设计</div>
-                          <div class="card-content">
-                            <ul>
-                              <li><strong>高交互 Web 客户端</strong>：基于 Vue 3 打造。将微服务延迟拓扑动态监控与 xterm.js 实时 Linux 指令终端完美结合，支持原生
-                                ANSI 色彩输出。</li>
-                              <li><strong>游戏控制服务端 (Express+ws)</strong>：搭载五状态闭环状态机，处理竞速全生命周期；评分器 (Scorer)
-                                在故障被修复时对决策效率完成定量计算。</li>
-                              <li><strong>安全指令代理网关 (Terminal Proxy)</strong>：防御前台执行破坏性指令。采用动态参数重写技术，将人类命令安全锁定在独立
-                                Namespace。</li>
-                            </ul>
-                          </div>
-                        </div>
-                        <div class="arch-svg-container">
-                          <!-- Animated Interactive SVG representing dynamic traffic routing -->
-                          <svg viewBox="0 0 400 300" width="100%" height="100%" style="font-family: inherit;">
-                            <rect x="10" y="10" width="380" height="280" rx="15" fill="#ffffff"
-                              stroke="rgba(0,0,0,0.06)" stroke-width="2" />
-
-                            <!-- Pulsing Nodes -->
-                            <g class="node-pulse">
-                              <rect x="35" y="130" width="80" height="40" rx="8" fill="#38bdf8" />
-                              <text x="75" y="155" fill="#0f172a" font-size="10" font-weight="800"
-                                text-anchor="middle">Frontend</text>
-                            </g>
-
-                            <rect x="160" y="80" width="80" height="40" rx="8" fill="#34d399" />
-                            <text x="200" y="105" fill="#0f172a" font-size="10" font-weight="800"
-                              text-anchor="middle">Order Svc</text>
-
-                            <rect x="160" y="180" width="80" height="40" rx="8" fill="#34d399" />
-                            <text x="200" y="205" fill="#0f172a" font-size="10" font-weight="800"
-                              text-anchor="middle">Product Svc</text>
-
-                            <rect x="285" y="130" width="80" height="40" rx="8" fill="#f59e0b" />
-                            <text x="325" y="155" fill="#0f172a" font-size="10" font-weight="800"
-                              text-anchor="middle">DevOps Agent</text>
-
-                            <!-- Animating Dashed Flow lines -->
-                            <path class="flow-line" d="M 115 150 L 160 100" stroke="#0284c7" stroke-width="2"
-                              fill="none" />
-                            <path class="flow-line" d="M 115 150 L 160 200" stroke="#0284c7" stroke-width="2"
-                              fill="none" />
-                            <path class="flow-line" d="M 240 100 L 285 150" stroke="#34d399" stroke-width="2"
-                              fill="none" />
-                            <path class="flow-line" d="M 240 200 L 285 150" stroke="#34d399" stroke-width="2"
-                              fill="none" />
-
-                            <text x="200" y="260" fill="#475569" font-size="10" text-anchor="middle"
-                              font-weight="500">微服务延迟感知拓扑及实时指令数据流通路</text>
-                          </svg>
-                        </div>
-                      </div>
-                    </div>
-
-                    <!-- SLIDE 4: CORE INNOVATIONS -->
-                    <div class="slide">
-                      <div class="slide-header">
-                        <div class="slide-title">3. 项目核心创新点</div>
-                        <div class="slide-subtitle">Core Innovations</div>
-                      </div>
-                      <div class="grid-4">
-                        <div class="card">
-                          <div class="card-title">☸️ K8s-Native 物理自愈</div>
-                          <div class="card-content">
-                            <ul>
-                              <li><strong>集群物理穿透</strong>：每一次指标变化与故障表现，均来源于物理宿主容器状态。</li>
-                              <li><strong>轻量级混沌注入</strong>：采用 Netem 包延迟和 dd 存储爆满，避免 Chaos Mesh 重型开销。</li>
-                              <li><strong>零残留回滚自愈</strong>：游戏终止秒级清理全部环境变动，实现资源零残留还原。</li>
-                            </ul>
-                          </div>
-                        </div>
-                        <div class="card">
-                          <div class="card-title">🔒 安全命令代理网关</div>
-                          <div class="card-content">
-                            <ul>
-                              <li><strong>命名空间绝对锁定</strong>：代理网关强制解析命令并动态重写追加 `-n chaos-game` 边界。</li>
-                              <li><strong>白名单双重硬拦截</strong>：仅允许运行 `get`、`logs`、`describe`、`scale` 等 6 种安全可观测命令。</li>
-                              <li><strong>防脚本命令拼接逃逸</strong>：全面封锁分号、后台挂起等字符，维持极高安全运维水位。</li>
-                            </ul>
-                          </div>
-                        </div>
-                        <div class="card">
-                          <div class="card-title">🔍 快照剪枝对比降噪</div>
-                          <div class="card-content">
-                            <ul>
-                              <li><strong>解决可观测日志噪声</strong>：微服务海量监控对大模型构成干扰，导致定位偏航。</li>
-                              <li><strong>黄金基线差异对比</strong>：智能原子比对正常 Baseline，剔除无害细节，瘦身 75% 以上。</li>
-                              <li><strong>高精度 Context 喂入</strong>：以最高信噪比诊断快照实现工业级大模型决策，彻底杜绝幻觉。</li>
-                            </ul>
-                          </div>
-                        </div>
-                        <div class="card">
-                          <div class="card-title">🤖 闭环 OODA 运维 Agent</div>
-                          <div class="card-content">
-                            <ul>
-                              <li><strong>Observe/Orient</strong>：定时高频探测高信噪比拓扑指标，追溯微服务崩溃扩散路径。</li>
-                              <li><strong>Decide 根因定位</strong>：CoT 思维链引导大模型推演定位，极速生成可靠 `kubectl` 脚本。</li>
-                              <li><strong>Action/闭环自愈</strong>：Agent 自发操作集群并循环评估成效。白盒推演过程实时可见。</li>
-                            </ul>
-                          </div>
-                        </div>
-                      </div>
-                    </div>还原生产级故障时的各种级联熔断负反馈。
-                  </li>
+                  <li><strong>大模型落地浅尝辄止</strong>：大模型多被用于协助编写配置代码等“离线”开发场景，鲜有与真实生产环境深度穿透并实现双向自愈闭环。</li>
                 </ul>
               </div>
             </div>
-            <div class="card">
-              <div class="card-title">🔒 安全命令重写网关 (Terminal Proxy)</div>
+            <div class="card accent-green">
+              <div class="card-title">🚒 Chaos Fire Drill 对决竞速沙箱</div>
               <div class="card-content">
                 <ul>
-                  <li><strong>命名空间边界动态重写</strong>：在命令执行代理层增加深度拦截。所有前台终端输入的指令都会通过正则解析引擎强制追加 `-n chaos-game`。人类用户虽享有真实
-                    `kubectl` 操作权限，却绝对无法横向操作系统命名空间，提供了多租户环境的最佳云安全防护。</li>
-                  <li><strong>危险字符与拼接拦截</strong>：物理断开管道符拼接、多命令连带、后台挂起运行等漏洞，维持了高度安全的运维水位。</li>
+                  <li><strong>混沌工程游戏化</strong>：把事故定位与复原抽象为“火灾扑救竞速”，引入预算开销与时间压力模型，引导在严格约束下寻求最优排障路径。</li>
+                  <li><strong>人 🆚 AI 智能体同台博弈</strong>：引入基于 LLM 封装的 AI DevOps Agent 同台诊断。在实时的大屏中直观评估 AI 与人类的现场决策思路与效率差距。</li>
+                  <li><strong>K8s-Native 实体物理靶场</strong>：绝非伪模拟！每一次在大屏中看到的服务熔断和 Pod 挂死，都是作用于真实的物理容器，自愈指令也是实机运行。</li>
                 </ul>
               </div>
             </div>
           </div>
         </div>
 
-        <!-- SLIDE 6: AI INNOVATION -->
+        <!-- SLIDE 3: INTEGRATION SYNERGY -->
         <div class="slide">
           <div class="slide-header">
-            <div class="slide-title">5. AI 创新点：DevOps Agent 与 OODA 决策自愈</div>
-            <div class="slide-subtitle">AI Innovations & Self-healing Agent</div>
+            <div class="slide-title">2. 承上启下：课程微服务实验集大成联动</div>
+            <div class="slide-subtitle">Curriculum Experiment Synergy</div>
+          </div>
+          <div class="grid-4">
+            <div class="card">
+              <div class="card-title">📦 实验一</div>
+              <div class="card-content">
+                <strong>Docker 容器化</strong>
+                <p style="margin-top: 0.8rem; font-size: 1.15rem; line-height: 1.6;">微服务镜像打包发布的基础，为后续物理靶标的搭建与物理资源隔离奠定了最小容器实体。</p>
+              </div>
+            </div>
+            <div class="card">
+              <div class="card-title">☸️ 实验二</div>
+              <div class="card-content">
+                <strong>K8s 容器编排</strong>
+                <p style="margin-top: 0.8rem; font-size: 1.15rem; line-height: 1.6;">构建 Namespace 靶场边界，并深入应用 RBAC 权限设计创建 ServiceAccount 供服务端安全调用集群资源。</p>
+              </div>
+            </div>
+            <div class="card">
+              <div class="card-title">🕸️ 实验三</div>
+              <div class="card-content">
+                <strong>微服务架构</strong>
+                <p style="margin-top: 0.8rem; font-size: 1.15rem; line-height: 1.6;">直接提取微服务实验的核心架构 (frontend/order/product) 作为演练载体，在混沌中完美呈现级联雪崩。</p>
+              </div>
+            </div>
+            <div class="card">
+              <div class="card-title">🔥 实验四</div>
+              <div class="card-content">
+                <strong>混沌工程理论</strong>
+                <p style="margin-top: 0.8rem; font-size: 1.15rem; line-height: 1.6;">故障设计、故障注入与系统自愈核心理论的集大成落地，为游戏全流程演进提供高维机制支持。</p>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- SLIDE 4: SYSTEM ARCHITECTURE -->
+        <div class="slide">
+          <div class="slide-header">
+            <div class="slide-title">3. 系统架构设计与交互拓扑</div>
+            <div class="slide-subtitle">System Architecture & Topology</div>
           </div>
           <div class="grid-2">
             <div class="card">
-              <div class="card-title">🔍 快照剪枝对比降噪算法 (Snapshot RAG)</div>
+              <div class="card-title">⚙️ 模块化分层控制设计</div>
               <div class="card-content">
                 <ul>
-                  <li><strong>告别 SRE 长日志泛滥泥潭</strong>：Kubernetes 运行时信息庞杂冗余，直接输入 LLM 极易导致模型在大段无用元数据中“迷失 (Lost in the
-                    Middle)”产生幻觉决策，并且消耗巨量 API 资费。</li>
-                  <li><strong>基线差异剪枝 (Baseline Diffing)</strong>：AI 引擎定时读取集群，与健康黄金基线作差异比对。剔除一切正常的服务细节和长串 UUID。</li>
-                  <li><strong>Context 压缩 75% 以上</strong>：仅向大模型输入突发异常的高信噪比快照，使 Agent 判断定位准确率达到极高等级。</li>
+                  <li><strong>高交互 Web 客户端</strong>：基于 Vue 3 打造。将微服务延迟拓扑动态监控与 xterm.js 实时 Linux 指令终端完美结合，支持原生 ANSI 色彩输出。</li>
+                  <li><strong>游戏控制服务端 (Express+ws)</strong>：搭载五状态闭环状态机，处理竞速全生命周期；评分器 (Scorer) 在故障被修复时对决策效率完成定量计算。</li>
+                  <li><strong>安全指令代理网关 (Terminal Proxy)</strong>：防御前台执行破坏性指令。采用动态参数重写技术，将人类命令安全锁定在独立 Namespace。</li>
+                </ul>
+              </div>
+            </div>
+            <div class="arch-svg-container">
+              <!-- Animated Interactive SVG representing dynamic traffic routing -->
+              <svg viewBox="0 0 400 300" width="100%" height="100%" style="font-family: inherit;">
+                <rect x="10" y="10" width="380" height="280" rx="15" fill="#ffffff" stroke="rgba(0,0,0,0.06)" stroke-width="2"/>
+                
+                <!-- Pulsing Nodes -->
+                <g class="node-pulse">
+                  <rect x="35" y="130" width="80" height="40" rx="8" fill="#38bdf8" />
+                  <text x="75" y="155" fill="#0f172a" font-size="10" font-weight="800" text-anchor="middle">Frontend</text>
+                </g>
+                
+                <rect x="160" y="80" width="80" height="40" rx="8" fill="#34d399" />
+                <text x="200" y="105" fill="#0f172a" font-size="10" font-weight="800" text-anchor="middle">Order Svc</text>
+                
+                <rect x="160" y="180" width="80" height="40" rx="8" fill="#34d399" />
+                <text x="200" y="205" fill="#0f172a" font-size="10" font-weight="800" text-anchor="middle">Product Svc</text>
+
+                <rect x="285" y="130" width="80" height="40" rx="8" fill="#f59e0b" />
+                <text x="325" y="155" fill="#0f172a" font-size="10" font-weight="800" text-anchor="middle">DevOps Agent</text>
+
+                <!-- Animating Dashed Flow lines -->
+                <path class="flow-line" d="M 115 150 L 160 100" stroke="#0284c7" stroke-width="2" fill="none"/>
+                <path class="flow-line" d="M 115 150 L 160 200" stroke="#0284c7" stroke-width="2" fill="none"/>
+                <path class="flow-line" d="M 240 100 L 285 150" stroke="#34d399" stroke-width="2" fill="none"/>
+                <path class="flow-line" d="M 240 200 L 285 150" stroke="#34d399" stroke-width="2" fill="none"/>
+
+                <text x="200" y="260" fill="#475569" font-size="10" text-anchor="middle" font-weight="500">微服务延迟感知拓扑及实时指令数据流通路</text>
+              </svg>
+            </div>
+          </div>
+        </div>
+
+        <!-- SLIDE 5: COMBINED INNOVATIONS (创新点合一) -->
+        <div class="slide">
+          <div class="slide-header">
+            <div class="slide-title">4. 创新点</div>
+            <div class="slide-subtitle">Core Innovations</div>
+          </div>
+          <div class="grid-4">
+            <div class="card">
+              <div class="card-title">☸️ K8s-Native</div>
+              <div class="card-content">
+                <ul>
+                  <li><strong>物理集群穿透</strong>：每一次状态反馈，均直接真实作用于物理容器节点。</li>
+                  <li><strong>轻量级故障注入</strong>：基于 linux 自带流量控制及 dd 指令，资源开销几乎为零。</li>
+                  <li><strong>秒级自愈还原</strong>：退出或超时自动回滚清理所有故障，维持靶场无残留洁净状态。</li>
                 </ul>
               </div>
             </div>
             <div class="card">
-              <div class="card-title">🤖 闭环的 OODA 自进化运维</div>
+              <div class="card-title">🔒 安全代理</div>
               <div class="card-content">
                 <ul>
-                  <li><strong>Observe (观测)</strong>：周期性爬取剔除噪声后的 K8s 集群快照。</li>
-                  <li><strong>Orient (调整)</strong>：利用拓扑调用链诊断出故障所波及的上下游影响面。</li>
-                  <li><strong>Decide (决策)</strong>：结合思维链 (CoT)，判断核心根因，输出正确的 `kubectl` 自愈方案。</li>
-                  <li><strong>Action (执行)</strong>：由代理代劳在物理集群下发命令，并在后续调谐闭环中评估修复结果。大屏上实时推送白盒化的推理过程，人机互促极具教学演示价值。</li>
+                  <li><strong>命名空间硬锁定</strong>：前台命令注入通过正则重写，强制动态追加并替换命名空间。</li>
+                  <li><strong>白名单限制机制</strong>：严格仅允许执行 scale、logs、describe 等 6 种安全可观测命令。</li>
+                  <li><strong>防御脚本命令拼接</strong>：彻底拦截分号、多指令后台运行等字符，封锁系统风险。</li>
+                </ul>
+              </div>
+            </div>
+            <div class="card">
+              <div class="card-title">🔍 快照剪枝</div>
+              <div class="card-content">
+                <ul>
+                  <li><strong>解决可观测噪声</strong>：SRE 数据繁杂，直接发送极易导致大模型在庞杂元数据中“注意力迷失”。</li>
+                  <li><strong>基线差异原子对比</strong>：定时抓取快照并对比 Baseline，仅提炼高信噪比差异数据。</li>
+                  <li><strong>Context 瘦身 75%</strong>：剔除冗余 UUID 和正常服务细节，提供最高精度根因数据。</li>
+                </ul>
+              </div>
+            </div>
+            <div class="card">
+              <div class="card-title">🤖 闭环 Agent</div>
+              <div class="card-content">
+                <ul>
+                  <li><strong>OODA 流程全闭环</strong>：自动化 Observe-Orient-Decide-Action。</li>
+                  <li><strong>CoT 自愈路径推理</strong>：基于思维链智能定位故障，在大屏上实时推送推演理由。</li>
+                  <li><strong>代理指令秒级执行</strong>：AI 自发在靶场调用自愈命令并在下一轮循环自动评估修复结果。</li>
                 </ul>
               </div>
             </div>
           </div>
         </div>
 
-        <!-- SLIDE 5: MULTI-DIMENSIONAL SCORER -->
+        <!-- SLIDE 6: MULTI-DIMENSIONAL SCORER -->
         <div class="slide">
           <div class="slide-header">
-            <div class="slide-title">4. 科学定量的 SACS 四维评分指标</div>
+            <div class="slide-title">5. 科学定量的 SACS 四维评分量化指标</div>
             <div class="slide-subtitle">Scoring & Quantized Evaluation</div>
           </div>
           <div class="grid-4">
@@ -784,41 +758,37 @@
               <div class="card-title">⏱️ Speed</div>
               <div class="card-content">
                 <strong>抢修速度分 (50%)</strong>
-                <p style="margin-top: 0.8rem; font-size: 0.88rem; line-height: 1.6;">按照自愈所耗时间呈数学线性衰减。完成越快得分越高；超时未完成则直接为
-                  0 分，高度量化时间压力。</p>
+                <p style="margin-top: 0.8rem; font-size: 1.15rem; line-height: 1.6;">按照自愈所耗时间呈数学线性衰减。完成越快得分越高；超时未完成则直接为 0 分，高度量化时间压力。</p>
               </div>
             </div>
             <div class="card">
               <div class="card-title">🎯 Accuracy</div>
               <div class="card-content">
                 <strong>根因准确度 (20%)</strong>
-                <p style="margin-top: 0.8rem; font-size: 0.88rem; line-height: 1.6;">
-                  利用大模型与规则库智能语义匹配排障指令，准确检验是否找出故障源头，防止无脑低效尝试。</p>
+                <p style="margin-top: 0.8rem; font-size: 1.15rem; line-height: 1.6;">利用大模型与规则库智能语义匹配排障指令，准确检验是否找出故障源头，防止无脑低效尝试。</p>
               </div>
             </div>
             <div class="card">
               <div class="card-title">💸 Cost</div>
               <div class="card-content">
                 <strong>资金开销分 (15%)</strong>
-                <p style="margin-top: 0.8rem; font-size: 0.88rem; line-height: 1.6;">引入虚拟资产开销。人类每更改一次集群状态，或者 AI
-                  每轮大模型交互均扣除预算，惩罚盲目排障。</p>
+                <p style="margin-top: 0.8rem; font-size: 1.15rem; line-height: 1.6;">引入虚拟资产开销。人类每更改一次集群状态，或者 AI 每轮大模型交互均扣除预算，惩罚盲目排障。</p>
               </div>
             </div>
             <div class="card">
               <div class="card-title">📋 Standard</div>
               <div class="card-content">
                 <strong>操作规范度 (15%)</strong>
-                <p style="margin-top: 0.8rem; font-size: 0.88rem; line-height: 1.6;">审计前台所运行的所有 `kubectl`
-                  语法及结构，错输无效指令将遭到扣分，培养工业级专业规范。</p>
+                <p style="margin-top: 0.8rem; font-size: 1.15rem; line-height: 1.6;">审计前台所运行的所有 `kubectl` 语法及结构，错输无效指令将遭到扣分，培养工业级专业规范。</p>
               </div>
             </div>
           </div>
         </div>
 
-        <!-- SLIDE 6: EXPERIMENT SHOWCASE & CODE STABILITY -->
+        <!-- SLIDE 7: EXPERIMENT SHOWCASE & CODE STABILITY -->
         <div class="slide">
           <div class="slide-header">
-            <div class="slide-title">5. 真实注入实测成果与工程健壮度</div>
+            <div class="slide-title">6. 真实注入实测成果与工程健壮度</div>
             <div class="slide-subtitle">Verification & Code Stability</div>
           </div>
           <div class="grid-2">
@@ -826,10 +796,8 @@
               <div class="card-title">🚒 物理沙箱真实注入表现</div>
               <div class="card-content">
                 <ul>
-                  <li><strong>磁盘满注入实测 (Easy Mode)</strong>：在 `order-service` 物理容器中瞬间跑满 64MB
-                    临时存储文件。前台利用终端探针锁定异常路径并快速删除，集群秒级回归 100% 正常。</li>
-                  <li><strong>多服务毁灭瘫痪 (Hard Mode)</strong>：`product-service` 遭遇零缩容路由切断，同时邻近 Pod 执行 `kill 1` 遭遇死亡。AI
-                    Agent 结合 OODA 诊断出 product-service 缺失详情，20秒内调用扩容瞬间拉回，自愈品质表现优异。</li>
+                  <li><strong>磁盘满注入实测 (Easy Mode)</strong>：在 `order-service` 物理容器中瞬间跑满 64MB 临时存储文件。前台利用终端探针锁定异常路径并快速删除，集群秒级回归 100% 正常。</li>
+                  <li><strong>多服务毁灭瘫痪 (Hard Mode)</strong>：`product-service` 遭遇零缩容路由切断，同时邻近 Pod 执行 `kill 1` 遭遇死亡。AI Agent 结合 OODA 诊断出 product-service 缺失详情，20秒内调用扩容瞬间拉回，自愈品质表现优异。</li>
                 </ul>
               </div>
             </div>
@@ -843,24 +811,24 @@
                     <button class="tab-header" onclick="switchTab('tab-k8s')">K8s 自愈命令</button>
                   </div>
                   <div id="tab-tests" class="tab-content active">
-                    PASS __tests__/scorer.test.js
-                    PASS __tests__/chaos-injector.test.js
-                    PASS __tests__/terminal-proxy.test.js
-                    PASS __tests__/integration.test.js
-                    PASS __tests__/k8s-client.test.js
+PASS  __tests__/scorer.test.js
+PASS  __tests__/chaos-injector.test.js
+PASS  __tests__/terminal-proxy.test.js
+PASS  __tests__/integration.test.js
+PASS  __tests__/k8s-client.test.js
 
-                    Test Suites: 8 passed, 8 total
-                    Tests: 108 passed, 108 total
-                    Time: 5.48 s
+Test Suites: 8 passed, 8 total
+Tests:       108 passed, 108 total
+Time:        5.48 s
                   </div>
                   <div id="tab-k8s" class="tab-content">
-                    $ kubectl get deployments,pods -n chaos-game
-                    NAME READY AVAILABLE
-                    deployment/product-service 0/0 0
-                    deployment/order-service 1/2 1
+$ kubectl get deployments,pods -n chaos-game
+NAME                        READY   AVAILABLE
+deployment/product-service  0/0     0
+deployment/order-service    1/2     1
 
-                    $ kubectl scale deployment product-service --replicas=2
-                    deployment.apps/product-service scaled
+$ kubectl scale deployment product-service --replicas=2
+deployment.apps/product-service scaled
                   </div>
                 </div>
               </div>
@@ -868,10 +836,10 @@
           </div>
         </div>
 
-        <!-- SLIDE 7: LESSONS & LOOKING FORWARD -->
+        <!-- SLIDE 8: LESSONS & LOOKING FORWARD -->
         <div class="slide">
           <div class="slide-header">
-            <div class="slide-title">6. 总结收获与未来展望</div>
+            <div class="slide-title">7. 总结收获与未来展望</div>
             <div class="slide-subtitle">Summary & Future Scope</div>
           </div>
           <div class="grid-2">
@@ -879,11 +847,8 @@
               <div class="card-title">🌟 收获与心得</div>
               <div class="card-content">
                 <ul>
-                  <li>
-                    <strong>面向故障设计的核心思维</strong>：以前写微服务配置总觉得繁冗，通过在沙箱环境中进行混沌对决，切实认识到健康检查探针、重启退避对于服务韧性（Resilience）的极高保障价值。
-                  </li>
-                  <li><strong>大模型自愈的可行性闭环</strong>：在大规模云端场景中，AI 不仅能帮我们生成静态配置。其在 OODA 自愈决策闭环中的深度参与，证实了 AIOps 智能运维的无限潜力。
-                  </li>
+                  <li><strong>面向故障设计的核心思维</strong>：以前写微服务配置总觉得繁冗，通过在沙箱环境中进行混沌对决，切实认识到健康检查探针、重启退避对于服务韧性（Resilience）的极高保障价值。</li>
+                  <li><strong>大模型自愈的可行性闭环</strong>：在大规模云端场景中，AI 不仅能帮我们生成静态配置。其在 OODA 自愈决策闭环中的深度参与，证实了 AIOps 智能运维的无限潜力。</li>
                 </ul>
               </div>
             </div>
@@ -891,8 +856,7 @@
               <div class="card-title">🚀 未来研究方向</div>
               <div class="card-content">
                 <ul>
-                  <li><strong>细粒度全链路可观测性</strong>：下一步拟深入集成 Prometheus 及 OpenTelemetry，为大模型提供更多时序性 CPU/网络流量指标，支持精准调优自愈。
-                  </li>
+                  <li><strong>细粒度全链路可观测性</strong>：下一步拟深入集成 Prometheus 及 OpenTelemetry，为大模型提供更多时序性 CPU/网络流量指标，支持精准调优自愈。</li>
                   <li><strong>双智能体自进化对抗沙箱</strong>：设计一个能够自主挖掘漏洞的“破坏者 Agent”与负责实时抢修的“自愈 Agent”进行左右互搏，持续压榨微服务弹性机制。</li>
                   <li><strong>跨多云分布式拓扑</strong>：从单一 Namespace 扩展为多云混合异构环境下的超大规模消防演习靶场，承载全局微服务雪崩实战。</li>
                 </ul>
@@ -901,14 +865,13 @@
           </div>
         </div>
 
-        <!-- SLIDE 8: THANK YOU -->
+        <!-- SLIDE 9: THANK YOU -->
         <div class="slide" style="justify-content: center; align-items: center; text-align: center;">
-          <div class="logo-hero" style="font-size: 6.5rem; margin-bottom: 2rem;">THANK YOU</div>
-          <h2 style="font-size: 2.4rem; font-weight: 900; margin-bottom: 1.5rem; letter-spacing: -0.5px;">
-            敬请各位老师、评审专家批评指正！</h2>
-          <p style="color: var(--text-muted); font-size: 1.15rem; max-width: 600px; line-height: 1.8;">
-            Chaos Fire Drill <br>
-            云计算与大作业期末答辩汇报展示
+          <div class="logo-hero" style="font-size: 8.5rem; margin-bottom: 2rem;">THANK YOU</div>
+          <h2 style="font-size: 3.5rem; font-weight: 900; margin-bottom: 1.5rem; letter-spacing: -0.5px;">敬请各位老师、评审专家批评指正！</h2>
+          <p style="color: var(--text-muted); font-size: 1.65rem; max-width: 800px; line-height: 1.8;">
+            Chaos Fire Drill 开发组<br>
+            云计算与微服务大作业期末集成答辩汇报展示
           </p>
         </div>
 
@@ -919,12 +882,12 @@
         <button class="nav-btn" id="prev-btn" onclick="navigate(-1)" disabled>
           ← 上一页 (Prev)
         </button>
-
+        
         <div class="progress-bar-container">
           <div class="progress-bar-fill" id="progress-fill"></div>
         </div>
 
-        <span class="slide-number" id="slide-num">1 / 8</span>
+        <span class="slide-number" id="slide-num">1 / 9</span>
 
         <button class="nav-btn" id="next-btn" onclick="navigate(1)">
           下一页 (Next) →
@@ -1021,5 +984,4 @@
     updateSlides();
   </script>
 </body>
-
 </html>
