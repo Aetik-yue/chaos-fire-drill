@@ -1,0 +1,140 @@
+# Target microservices — the "victims" for chaos fire drill
+# frontend, order-service, product-service
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: frontend
+  namespace: chaos-game
+spec:
+  replicas: 2
+  selector:
+    matchLabels:
+      app: frontend
+  template:
+    metadata:
+      labels:
+        app: frontend
+    spec:
+      containers:
+        - name: nginx
+          image: nginx:alpine
+          ports:
+            - containerPort: 80
+          securityContext:
+            capabilities:
+              add: ["NET_ADMIN"]
+          lifecycle:
+            postStart:
+              exec:
+                command: ["/bin/sh", "-c", "apk add --no-cache iproute2 2>/dev/null || true"]
+          readinessProbe:
+            httpGet:
+              path: /
+              port: 80
+            initialDelaySeconds: 3
+            periodSeconds: 2
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: frontend
+  namespace: chaos-game
+spec:
+  selector:
+    app: frontend
+  ports:
+    - port: 80
+      targetPort: 80
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: order-service
+  namespace: chaos-game
+spec:
+  replicas: 2
+  selector:
+    matchLabels:
+      app: order-service
+  template:
+    metadata:
+      labels:
+        app: order-service
+    spec:
+      containers:
+        - name: nginx
+          image: nginx:alpine
+          ports:
+            - containerPort: 80
+          securityContext:
+            capabilities:
+              add: ["NET_ADMIN"]
+          lifecycle:
+            postStart:
+              exec:
+                command: ["/bin/sh", "-c", "apk add --no-cache iproute2 2>/dev/null || true"]
+          readinessProbe:
+            httpGet:
+              path: /
+              port: 80
+            initialDelaySeconds: 3
+            periodSeconds: 2
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: order-service
+  namespace: chaos-game
+spec:
+  selector:
+    app: order-service
+  ports:
+    - port: 80
+      targetPort: 80
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: product-service
+  namespace: chaos-game
+spec:
+  replicas: 2
+  selector:
+    matchLabels:
+      app: product-service
+  template:
+    metadata:
+      labels:
+        app: product-service
+    spec:
+      containers:
+        - name: nginx
+          image: nginx:alpine
+          ports:
+            - containerPort: 80
+          securityContext:
+            capabilities:
+              add: ["NET_ADMIN"]
+          lifecycle:
+            postStart:
+              exec:
+                command: ["/bin/sh", "-c", "apk add --no-cache iproute2 2>/dev/null || true"]
+          readinessProbe:
+            httpGet:
+              path: /
+              port: 80
+            initialDelaySeconds: 3
+            periodSeconds: 2
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: product-service
+  namespace: chaos-game
+spec:
+  selector:
+    app: product-service
+  ports:
+    - port: 80
+      targetPort: 80

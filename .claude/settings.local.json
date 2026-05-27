@@ -1,0 +1,24 @@
+{
+  "permissions": {
+    "defaultMode": "acceptEdits",
+    "allow": [
+      "Bash(powershell.exe *)",
+      "Edit(*)",
+      "Write(*)",
+      "Bash(npm *)",
+      "Bash(node *)",
+      "Bash(cmd.exe *)",
+      "Bash(curl *)",
+      "Bash(kill *)",
+      "Bash(sleep *)",
+      "Bash(cat *)",
+      "Bash(find *)",
+      "Bash(ls *)",
+      "Bash(kubectl *)",
+      "Bash(taskkill *)",
+      "Bash(lsof *)",
+      "Bash(netstat *)",
+      "Bash(npx *)"
+    ]
+  }
+}
