@@ -55,9 +55,11 @@ app.post('/api/game/start', async (req, res) => {
     // Pick and inject faults
     // Set targets based on current mode before picking faults
     if (currentMode === 'bookinfo') {
-      injector.setTargets(['productpage', 'details', 'ratings', 'reviews'], 1);
+      injector.setTargets(['productpage-v1', 'details-v1', 'ratings-v1', 'reviews-v1'], 1);
+      injector.setScaleOnly(true);
     } else {
       injector.setTargets(['frontend', 'order-service', 'product-service'], 2);
+      injector.setScaleOnly(false);
     }
     const faults = injector.pickFault(difficulty);
 

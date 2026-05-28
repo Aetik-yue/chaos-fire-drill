@@ -4,1030 +4,806 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Chaos Fire Drill — 期末答辩演示幻灯片</title>
+  <title>Chaos Fire Drill — 期末答辩演示</title>
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link
-    href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=Outfit:wght@400;500;600;700;800;900&display=swap"
-    rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=Outfit:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
 
   <style>
-    /* Premium Slate Light Theme CSS */
     :root {
-      --bg-dark: #f1f5f9;
-      /* Slate-100 */
-      --panel-bg: rgba(255, 255, 255, 0.85);
-      --card-bg: rgba(255, 255, 255, 0.7);
-      --card-hover: rgba(255, 255, 255, 0.95);
-      --accent-blue: #0284c7;
-      /* Vibrant Sky Blue */
-      --accent-green: #10b981;
-      /* Success Emerald */
-      --accent-orange: #ea580c;
-      /* Warning Orange */
-      --text-light: #0f172a;
-      /* Slate-900 */
-      --text-muted: #475569;
-      /* Slate-600 */
-      --border-color: rgba(15, 23, 42, 0.08);
-      --transition-speed: 0.6s;
+      --bg: #f1f5f9;
+      --panel: rgba(255, 255, 255, 0.88);
+      --card: rgba(255, 255, 255, 0.7);
+      --card-hover: rgba(255, 255, 255, 0.96);
+      --blue: #0284c7;
+      --green: #10b981;
+      --red: #ef4444;
+      --orange: #ea580c;
+      --purple: #8b5cf6;
+      --text: #0f172a;
+      --muted: #475569;
+      --border: rgba(15, 23, 42, 0.08);
+      --speed: 0.6s;
     }
 
-    * {
-      box-sizing: border-box;
-      margin: 0;
-      padding: 0;
-    }
+    * { box-sizing: border-box; margin: 0; padding: 0; }
 
     body {
       font-family: 'Inter', 'Microsoft YaHei', sans-serif;
-      background-color: var(--bg-dark);
-      color: var(--text-light);
-      height: 100vh;
-      overflow: hidden;
-      display: flex;
-      user-select: none;
-      position: relative;
+      background: var(--bg);
+      color: var(--text);
+      height: 100vh; overflow: hidden;
+      display: flex; user-select: none;
     }
 
-    /* Layout: Sidebar + Main Content Viewport */
-    .app-container {
-      display: flex;
-      width: 100vw;
-      height: 100vh;
-      position: relative;
-    }
+    .app-container { display: flex; width: 100vw; height: 100vh; }
 
-    /* Sidebar Slide Index (Premium Sidebar collapsible Panel) */
+    /* Sidebar */
     .slide-sidebar {
-      width: 300px;
-      background: rgba(255, 255, 255, 0.95);
-      border-right: 1px solid var(--border-color);
-      display: flex;
-      flex-direction: column;
-      padding: 2.5rem 1.2rem;
-      z-index: 1000;
-      transition: transform 0.4s cubic-bezier(0.25, 1, 0.5, 1), width 0.4s;
-      flex-shrink: 0;
-      backdrop-filter: blur(20px);
+      width: 300px; background: rgba(255,255,255,0.95);
+      border-right: 1px solid var(--border);
+      display: flex; flex-direction: column;
+      padding: 2.5rem 1.2rem; z-index: 1000;
+      flex-shrink: 0; backdrop-filter: blur(20px);
+      transition: transform 0.4s cubic-bezier(.25,1,.5,1), width 0.4s;
     }
-
-    .slide-sidebar.collapsed {
-      transform: translateX(-300px);
-      width: 0;
-      padding: 2.5rem 0;
-      border-right: none;
-    }
+    .slide-sidebar.collapsed { transform: translateX(-300px); width: 0; padding: 2.5rem 0; border-right: none; }
 
     .sidebar-header {
-      font-family: 'Outfit', sans-serif;
-      font-size: 1.45rem;
-      font-weight: 800;
-      color: var(--accent-blue);
-      margin-bottom: 2.5rem;
-      padding-left: 0.8rem;
-      display: flex;
-      align-items: center;
-      gap: 0.6rem;
+      font-family: 'Outfit', sans-serif; font-size: 1.45rem; font-weight: 800;
+      color: var(--blue); margin-bottom: 2.5rem; padding-left: 0.8rem;
+      display: flex; align-items: center; gap: 0.6rem;
     }
-
-    .index-list {
-      list-style: none;
-      display: flex;
-      flex-direction: column;
-      gap: 0.6rem;
-      overflow-y: auto;
-      flex: 1;
-      padding-right: 0.2rem;
-    }
-
+    .index-list { list-style: none; display: flex; flex-direction: column; gap: 0.6rem; overflow-y: auto; flex: 1; }
     .index-item {
-      padding: 0.8rem 1rem;
-      border-radius: 10px;
-      font-size: 1rem;
-      font-weight: 700;
-      color: var(--text-muted);
-      cursor: pointer;
-      transition: all 0.3s ease;
-      display: flex;
-      align-items: center;
-      gap: 0.8rem;
-      border: 1px solid transparent;
+      padding: 0.8rem 1rem; border-radius: 10px; font-size: 1rem; font-weight: 700;
+      color: var(--muted); cursor: pointer; transition: all 0.3s;
+      display: flex; align-items: center; gap: 0.8rem; border: 1px solid transparent;
     }
+    .index-item span.num { font-family: 'Outfit', sans-serif; color: var(--blue); opacity: 0.8; width: 1.5rem; }
+    .index-item:hover { background: rgba(0,0,0,0.04); color: var(--text); }
+    .index-item.active { background: rgba(2,132,199,0.08); color: var(--text); border-color: rgba(2,132,199,0.15); box-shadow: 0 4px 12px rgba(2,132,199,0.08); }
 
-    .index-item span.num {
-      font-family: 'Outfit', sans-serif;
-      color: var(--accent-blue);
-      opacity: 0.8;
-      width: 1.5rem;
-    }
-
-    .index-item:hover {
-      background: rgba(0, 0, 0, 0.04);
-      color: var(--text-light);
-    }
-
-    .index-item.active {
-      background: rgba(2, 132, 199, 0.08);
-      color: var(--text-light);
-      border-color: rgba(2, 132, 199, 0.15);
-      box-shadow: 0 4px 12px rgba(2, 132, 199, 0.08);
-    }
-
-    /* Main Presentation Frame */
-    .presentation-frame {
-      flex: 1;
-      display: flex;
-      flex-direction: column;
-      height: 100vh;
-      overflow: hidden;
-      position: relative;
-    }
-
-    /* Toggle Index Button */
+    /* Main frame */
+    .presentation-frame { flex: 1; display: flex; flex-direction: column; height: 100vh; overflow: hidden; position: relative; }
     .toggle-sidebar-btn {
-      position: absolute;
-      top: 1.5rem;
-      left: 1.5rem;
-      z-index: 1100;
-      background: var(--card-bg);
-      border: 1px solid var(--border-color);
-      color: var(--text-light);
-      cursor: pointer;
-      width: 3rem;
-      height: 3rem;
-      border-radius: 8px;
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      transition: all 0.3s;
-      backdrop-filter: blur(10px);
-      font-size: 1.2rem;
+      position: absolute; top: 1.5rem; left: 1.5rem; z-index: 1100;
+      background: var(--card); border: 1px solid var(--border); color: var(--text);
+      cursor: pointer; width: 3rem; height: 3rem; border-radius: 8px;
+      display: flex; justify-content: center; align-items: center;
+      transition: all 0.3s; backdrop-filter: blur(10px); font-size: 1.2rem;
     }
+    .toggle-sidebar-btn:hover { background: var(--blue); color: #fff; border-color: var(--blue); box-shadow: 0 0 15px rgba(2,132,199,0.35); }
 
-    .toggle-sidebar-btn:hover {
-      background: var(--accent-blue);
-      color: #ffffff;
-      border-color: var(--accent-blue);
-      box-shadow: 0 0 15px rgba(2, 132, 199, 0.35);
-    }
-
-    /* Slides Viewport & 3D Transitions */
-    .slides-viewport {
-      flex: 1;
-      position: relative;
-      perspective: 2000px;
-      overflow: hidden;
-    }
-
+    /* Slides */
+    .slides-viewport { flex: 1; position: relative; perspective: 2000px; overflow: hidden; }
     .slide {
-      position: absolute;
-      top: 0;
-      left: 0;
-      width: 100%;
-      height: 100%;
-      padding: 3.5rem 5rem 3.5rem 5rem;
-      display: flex;
-      flex-direction: column;
-      justify-content: flex-start;
-      opacity: 0;
-      visibility: hidden;
+      position: absolute; inset: 0;
+      padding: 3.5rem 5rem; display: flex; flex-direction: column; justify-content: flex-start;
+      opacity: 0; visibility: hidden;
       transform: rotateX(15deg) translateZ(-800px) translateY(100px);
-      transition: opacity var(--transition-speed) cubic-bezier(0.16, 1, 0.3, 1),
-        transform var(--transition-speed) cubic-bezier(0.16, 1, 0.3, 1),
-        visibility var(--transition-speed);
-      background: radial-gradient(circle at 50% 30%, rgba(241, 245, 249, 0.6) 0%, #f8fafc 85%);
+      transition: opacity var(--speed) cubic-bezier(.16,1,.3,1), transform var(--speed) cubic-bezier(.16,1,.3,1), visibility var(--speed);
+      background: radial-gradient(circle at 50% 30%, rgba(241,245,249,0.6) 0%, #f8fafc 85%);
     }
+    .slide.active { opacity: 1; visibility: visible; transform: rotateX(0deg) translateZ(0) translateY(0); }
+    .slide.prev-slide { transform: rotateX(-15deg) translateZ(-800px) translateY(-100px); }
 
-    .slide.active {
-      opacity: 1;
-      visibility: visible;
-      transform: rotateX(0deg) translateZ(0) translateY(0);
-    }
+    .slide-header { border-bottom: 1px solid var(--border); padding-bottom: 1.2rem; margin-bottom: 2rem; position: relative; }
+    .slide-header::after { content: ''; position: absolute; bottom: -1px; left: 0; width: 160px; height: 2px; background: linear-gradient(90deg, var(--blue), var(--green)); box-shadow: 0 0 10px rgba(2,132,199,0.3); }
+    .slide-title { font-family: 'Outfit', sans-serif; font-size: 4.8rem; font-weight: 900; letter-spacing: -1px; color: var(--text); background: linear-gradient(180deg, #0f172a 0%, #334155 100%); -webkit-background-clip: text; -webkit-text-fill-color: transparent; }
+    .slide-subtitle { font-family: 'Outfit', sans-serif; font-size: 2rem; font-weight: 700; text-transform: uppercase; letter-spacing: 3px; color: var(--blue); margin-top: 0.3rem; }
 
-    .slide.prev-slide {
-      transform: rotateX(-15deg) translateZ(-800px) translateY(-100px);
-    }
+    /* Grids */
+    .grid-2 { display: grid; grid-template-columns: 1fr 1fr; gap: 2.5rem; height: calc(100% - 6.5rem); }
+    .grid-3 { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1.5rem; height: calc(100% - 6.5rem); }
+    .grid-4 { display: grid; grid-template-columns: repeat(4, 1fr); gap: 1.5rem; height: calc(100% - 6.5rem); }
+    .grid-2x3 { display: grid; grid-template-columns: 1fr 1fr; grid-template-rows: auto auto auto; gap: 1.2rem; }
 
-    /* Slide Header */
-    .slide-header {
-      border-bottom: 1px solid var(--border-color);
-      padding-bottom: 1.2rem;
-      margin-bottom: 2.2rem;
-      position: relative;
-    }
-
-    .slide-header::after {
-      content: '';
-      position: absolute;
-      bottom: -1px;
-      left: 0;
-      width: 160px;
-      height: 2px;
-      background: linear-gradient(90deg, var(--accent-blue), var(--accent-green));
-      box-shadow: 0 0 10px rgba(2, 132, 199, 0.3);
-    }
-
-    .slide-title {
-      font-family: 'Outfit', sans-serif;
-      font-size: 4.2rem;
-      font-weight: 900;
-      letter-spacing: -1px;
-      color: var(--text-light);
-      background: linear-gradient(180deg, #0f172a 0%, #334155 100%);
-      -webkit-background-clip: text;
-      -webkit-text-fill-color: transparent;
-    }
-
-    .slide-subtitle {
-      font-family: 'Outfit', sans-serif;
-      font-size: 1.7rem;
-      font-weight: 700;
-      text-transform: uppercase;
-      letter-spacing: 3px;
-      color: var(--accent-blue);
-      margin-top: 0.3rem;
-    }
-
-    /* Layout Grids */
-    .grid-2 {
-      display: grid;
-      grid-template-columns: 1fr 1fr;
-      gap: 3.5rem;
-      height: calc(100% - 6.5rem);
-    }
-
-    .grid-4 {
-      display: grid;
-      grid-template-columns: repeat(4, 1fr);
-      gap: 2rem;
-      height: calc(100% - 6.5rem);
-    }
-
-    /* Cards Layout (Glassmorphic) */
+    /* Cards */
     .card {
-      background: var(--card-bg);
-      backdrop-filter: blur(12px);
-      border: 1px solid var(--border-color);
-      border-radius: 20px;
-      padding: 2.5rem 3rem;
-      transition: all 0.4s cubic-bezier(0.25, 1, 0.5, 1);
-      display: flex;
-      flex-direction: column;
-      position: relative;
-      overflow: hidden;
-      box-shadow: 0 4px 15px rgba(0, 0, 0, 0.02);
+      background: var(--card); backdrop-filter: blur(12px);
+      border: 1px solid var(--border); border-radius: 16px;
+      padding: 1.8rem 2.2rem; transition: all 0.4s cubic-bezier(.25,1,.5,1);
+      display: flex; flex-direction: column; position: relative; overflow: hidden;
+      box-shadow: 0 4px 15px rgba(0,0,0,0.02);
     }
+    .card::before { content: ''; position: absolute; top: 0; left: 0; width: 4px; height: 100%; background: var(--blue); }
+    .card.accent-green::before { background: var(--green); }
+    .card.accent-red::before { background: var(--red); }
+    .card.accent-orange::before { background: var(--orange); }
+    .card.accent-purple::before { background: var(--purple); }
+    .card:hover { transform: translateY(-4px); background: var(--card-hover); border-color: rgba(15,23,42,0.15); box-shadow: 0 10px 25px rgba(0,0,0,0.06); }
+    .card-title { font-size: 2rem; font-weight: 800; margin-bottom: 1rem; display: flex; align-items: center; gap: 0.6rem; color: var(--text); }
+    .card-content { font-size: 1.35rem; line-height: 1.7; color: var(--muted); flex: 1; }
+    .card-content strong { color: var(--text); font-weight: 600; }
+    .card-content ul { list-style: none; }
+    .card-content li { margin-bottom: 0.9rem; position: relative; padding-left: 1.8rem; font-size: 1.25rem; }
+    .card-content li::before { content: '▸'; position: absolute; left: 0; color: var(--blue); font-weight: bold; }
+    .card.accent-green .card-content li::before { color: var(--green); }
+    .card.accent-red .card-content li::before { color: var(--red); }
+    .card.accent-orange .card-content li::before { color: var(--orange); }
+    .card.accent-purple .card-content li::before { color: var(--purple); }
 
-    .card::before {
-      content: '';
-      position: absolute;
-      top: 0;
-      left: 0;
-      width: 4px;
-      height: 100%;
-      background: var(--accent-blue);
+    /* Hero Slide */
+    .slide-hero { justify-content: center; align-items: flex-start; padding-left: 10%; }
+    .logo-hero { font-family: 'Outfit', sans-serif; font-size: 8.5rem; font-weight: 900; background: linear-gradient(135deg, var(--blue) 0%, var(--green) 50%, var(--orange) 100%); -webkit-background-clip: text; -webkit-text-fill-color: transparent; margin-bottom: 1.5rem; letter-spacing: -3px; filter: drop-shadow(0 0 20px rgba(2,132,199,0.15)); }
+    .hero-sub { font-size: 4rem; font-weight: 300; color: var(--text); margin-bottom: 3rem; }
+    .hero-meta { font-size: 1.9rem; color: var(--muted); line-height: 2.4; border-left: 5px solid var(--orange); padding-left: 2rem; }
+
+    /* SVG */
+    .arch-svg { width: 100%; height: 100%; display: flex; justify-content: center; align-items: center; background: rgba(255,255,255,0.65); border-radius: 16px; border: 1px solid var(--border); padding: 1rem; box-shadow: inset 0 0 20px rgba(0,0,0,0.02); }
+    .node-pulse { animation: pulse 2.5s infinite alternate; }
+    @keyframes pulse { 0% { filter: drop-shadow(0 0 2px rgba(2,132,199,0.3)); } 100% { filter: drop-shadow(0 0 10px rgba(2,132,199,0.6)); } }
+    .flow-line { stroke-dasharray: 6; animation: dash 15s linear infinite; }
+    @keyframes dash { to { stroke-dashoffset: -200; } }
+
+    /* Tags */
+    .tag { display: inline-block; padding: 4px 12px; border-radius: 4px; font-size: 0.95rem; font-weight: 700; letter-spacing: 0.5px; margin: 2px 4px; }
+    .tag-blue { background: #dbeafe; color: #1e40af; }
+    .tag-green { background: #d1fae5; color: #065f46; }
+    .tag-red { background: #fee2e2; color: #991b1b; }
+    .tag-orange { background: #ffedd5; color: #9a3412; }
+    .tag-purple { background: #ede9fe; color: #5b21b6; }
+
+    /* Stats */
+    .stat-row { display: flex; gap: 1.5rem; margin: 1rem 0; }
+    .stat { text-align: center; flex: 1; }
+    .stat-val { font-family: 'Outfit', sans-serif; font-size: 3.2rem; font-weight: 900; color: var(--blue); }
+    .stat-label { font-size: 1.1rem; color: var(--muted); margin-top: 0.3rem; }
+
+    /* Code block */
+    .code-block { background: #0f172a; color: #34d399; padding: 1.2rem 1.6rem; border-radius: 10px; font-family: 'JetBrains Mono', 'Consolas', monospace; font-size: 1.2rem; line-height: 1.8; overflow-x: auto; margin-top: 0.8rem; }
+    .code-block .kw { color: #60a5fa; }
+    .code-block .flag { color: #fbbf24; }
+
+    /* Fault table */
+    .fault-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 0.6rem; }
+    .fault-card { padding: 1rem; border-radius: 8px; border: 1px solid var(--border); font-size: 1.05rem; text-align: center; }
+    .fault-card .name { font-weight: 700; color: var(--text); margin-bottom: 6px; font-size: 1.1rem; }
+    .fault-card .desc { color: var(--muted); font-size: 0.9rem; }
+
+    /* Mode compare */
+    .mode-row { display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 0.8rem; }
+    .mode-cell { padding: 0.9rem; text-align: center; border-radius: 6px; font-size: 1.1rem; border: 1px solid var(--border); }
+    .mode-cell.head { font-weight: 800; background: #f8fafc; color: var(--text); font-size: 1.2rem; }
+
+    /* Bottom controls */
+    .controls-bar { height: 5rem; background: rgba(255,255,255,0.95); border-top: 1px solid var(--border); display: flex; justify-content: space-between; align-items: center; padding: 0 4rem; z-index: 100; backdrop-filter: blur(20px); }
+    .progress-bar-container { flex: 1; height: 4px; background: rgba(0,0,0,0.06); margin: 0 3rem; border-radius: 2px; }
+    .progress-bar-fill { height: 100%; width: 0; background: linear-gradient(90deg, var(--blue), var(--green)); border-radius: 2px; transition: width 0.4s; }
+    .nav-btn { background: var(--card); border: 1px solid var(--border); color: var(--text); cursor: pointer; padding: 0.8rem 1.6rem; border-radius: 10px; font-size: 1.2rem; font-weight: 700; transition: all 0.3s; display: flex; align-items: center; gap: 0.6rem; }
+    .nav-btn:hover:not(:disabled) { background: var(--blue); color: #fff; border-color: var(--blue); box-shadow: 0 0 15px rgba(2,132,199,0.3); }
+    .nav-btn:disabled { opacity: 0.25; cursor: not-allowed; }
+     .slide-num { font-family: 'Outfit', sans-serif; font-size: 1.4rem; font-weight: 800; color: var(--muted); width: 6rem; text-align: center; }
+
+    /* Image Modal */
+    .img-modal { display:none; position:fixed; inset:0; z-index:9999; background:rgba(0,0,0,0.9); align-items:center; justify-content:center; }
+    .img-modal.show { display:flex; }
+    .img-modal-inner {
+      position:relative; display:flex; flex-direction:column;
+      width:98vw; max-height:97vh; gap:0.8rem;
     }
-
-    .card.accent-orange::before {
-      background: var(--accent-orange);
+    .img-modal-close {
+      position:absolute; top:-2.5rem; right:0; z-index:10;
+      background:rgba(255,255,255,0.15); border:1px solid rgba(255,255,255,0.3); color:#fff;
+      cursor:pointer; width:3rem; height:3rem; border-radius:8px;
+      font-size:1.5rem; display:flex; align-items:center; justify-content:center;
+      transition:all 0.2s;
     }
-
-    .card.accent-green::before {
-      background: var(--accent-green);
+    .img-modal-close:hover { background:rgba(255,255,255,0.3); }
+    .img-row { display:flex; gap:1rem; justify-content:center; align-items:flex-start; }
+    .img-row img { border-radius:12px; box-shadow:0 20px 60px rgba(0,0,0,0.6); object-fit:contain; }
+    .img-row img.modal-single { max-width:100%; max-height:90vh; }
+    .img-row img.modal-dual { max-width:calc(50% - 0.5rem); max-height:86vh; }
+    .img-modal-caption {
+      text-align:center; color:#f0f0f0; font-size:1.5rem; font-weight:700;
+      letter-spacing:0.5px;
     }
-
-    .card:hover {
-      transform: translateY(-8px);
-      background: var(--card-hover);
-      border-color: rgba(15, 23, 42, 0.15);
-      box-shadow: 0 10px 25px rgba(0, 0, 0, 0.06);
+    .dual-label {
+      text-align:center; display:flex; justify-content:center; gap:3rem;
+      font-size:1.15rem; line-height:1.6;
     }
-
-    .card-title {
-      font-size: 2.35rem;
-      font-weight: 800;
-      margin-bottom: 1.2rem;
-      display: flex;
-      align-items: center;
-      gap: 0.8rem;
-      color: var(--text-light);
-    }
-
-    .card-content {
-      font-size: 1.6rem;
-      line-height: 1.8;
-      color: var(--text-muted);
-      flex: 1;
-    }
-
-    .card-content strong {
-      color: var(--text-light);
-      font-weight: 600;
-    }
-
-    .card-content ul {
-      list-style-type: none;
-    }
-
-    .card-content li {
-      margin-bottom: 1.3rem;
-      position: relative;
-      padding-left: 2.2rem;
-    }
-
-    .card-content li::before {
-      content: '✦';
-      position: absolute;
-      left: 0;
-      color: var(--accent-blue);
-      font-weight: bold;
-      font-size: 1.5rem;
-    }
-
-    .card.accent-orange .card-content li::before {
-      color: var(--accent-orange);
-    }
-
-    .card.accent-green .card-content li::before {
-      color: var(--accent-green);
-    }
-
-    /* SVG Topology Graphics */
-    .arch-svg-container {
-      width: 100%;
-      height: 100%;
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      background: rgba(255, 255, 255, 0.65);
-      border-radius: 20px;
-      border: 1px solid var(--border-color);
-      padding: 1.5rem;
-      box-shadow: inset 0 0 20px rgba(0, 0, 0, 0.02);
-    }
-
-    /* Pulse animation for topology nodes */
-    .node-pulse {
-      animation: pulse-glow 2.5s infinite alternate;
-    }
-
-    @keyframes pulse-glow {
-      0% {
-        filter: drop-shadow(0 0 2px rgba(2, 132, 199, 0.3));
-      }
-
-      100% {
-        filter: drop-shadow(0 0 10px rgba(2, 132, 199, 0.6));
-      }
-    }
-
-    .flow-line {
-      stroke-dasharray: 6;
-      animation: dash 15s linear infinite;
-    }
-
-    @keyframes dash {
-      to {
-        stroke-dashoffset: -200;
-      }
-    }
-
-    /* Slide 1 Hero Layout */
-    .slide-welcome {
-      justify-content: center;
-      align-items: flex-start;
-      padding-left: 10%;
-    }
-
-    .logo-hero {
-      font-family: 'Outfit', sans-serif;
-      font-size: 8.5rem;
-      font-weight: 900;
-      background: linear-gradient(135deg, var(--accent-blue) 0%, var(--accent-green) 50%, var(--accent-orange) 100%);
-      -webkit-background-clip: text;
-      -webkit-text-fill-color: transparent;
-      margin-bottom: 1.5rem;
-      letter-spacing: -3px;
-      filter: drop-shadow(0 0 20px rgba(2, 132, 199, 0.15));
-    }
-
-    .welcome-subtitle {
-      font-size: 3.8rem;
-      font-weight: 300;
-      color: var(--text-light);
-      margin-bottom: 4rem;
-      letter-spacing: -0.5px;
-    }
-
-    .welcome-meta {
-      font-size: 1.85rem;
-      color: var(--text-muted);
-      line-height: 2.2;
-      border-left: 5px solid var(--accent-orange);
-      padding-left: 2rem;
-    }
-
-    /* Tab Layout Inside Slide 8 */
-    .tab-container {
-      margin-top: 1.2rem;
-    }
-
-    .tab-headers {
-      display: flex;
-      gap: 0.6rem;
-      border-bottom: 1px solid rgba(0, 0, 0, 0.08);
-      padding-bottom: 0.6rem;
-      margin-bottom: 1rem;
-    }
-
-    .tab-header {
-      background: none;
-      border: none;
-      color: var(--text-muted);
-      cursor: pointer;
-      font-size: 1.4rem;
-      font-weight: 700;
-      padding: 0.4rem 0.8rem;
-      border-radius: 6px;
-      transition: all 0.3s;
-    }
-
-    .tab-header.active {
-      color: var(--accent-blue);
-      background: rgba(2, 132, 199, 0.1);
-    }
-
-    .tab-content {
-      display: none;
-      font-family: 'Courier New', monospace;
-      font-size: 1.3rem;
-      background: #06090f;
-      padding: 1.2rem;
-      border-radius: 10px;
-      color: #34d399;
-      border: 1px solid rgba(255, 255, 255, 0.04);
-      overflow-x: auto;
-      max-height: 220px;
-    }
-
-    .tab-content.active {
-      display: block;
-    }
-
-    /* Bottom Control Bar and Progress */
-    .controls-bar {
-      height: 5rem;
-      background: rgba(255, 255, 255, 0.95);
-      border-top: 1px solid var(--border-color);
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      padding: 0 4rem;
-      z-index: 100;
-      backdrop-filter: blur(20px);
-    }
-
-    .progress-bar-container {
-      flex: 1;
-      height: 4px;
-      background: rgba(0, 0, 0, 0.06);
-      margin: 0 3rem;
-      border-radius: 2px;
-      position: relative;
-    }
-
-    .progress-bar-fill {
-      height: 100%;
-      width: 0;
-      background: linear-gradient(90deg, var(--accent-blue), var(--accent-green));
-      border-radius: 2px;
-      transition: width 0.4s ease;
-    }
-
-    .nav-btn {
-      background: var(--card-bg);
-      border: 1px solid var(--border-color);
-      color: var(--text-light);
-      cursor: pointer;
-      padding: 0.8rem 1.6rem;
-      border-radius: 10px;
-      font-size: 1.35rem;
-      font-weight: 700;
-      transition: all 0.3s cubic-bezier(0.25, 1, 0.5, 1);
-      display: flex;
-      align-items: center;
-      gap: 0.6rem;
-    }
-
-    .nav-btn:hover:not(:disabled) {
-      background: var(--accent-blue);
-      color: #ffffff;
-      border-color: var(--accent-blue);
-      box-shadow: 0 0 15px rgba(2, 132, 199, 0.3);
-    }
-
-    .nav-btn:disabled {
-      opacity: 0.25;
-      cursor: not-allowed;
-    }
-
-    .slide-number {
-      font-family: 'Outfit', sans-serif;
-      font-size: 1.5rem;
-      font-weight: 800;
-      color: var(--text-muted);
-      width: 6rem;
-      text-align: center;
-    }
+    .dual-label span { padding:0.6rem 1.4rem; border-radius:8px; }
+    .dual-label .dl-left { background:rgba(26,127,55,0.25); color:#4ac26b; }
+    .dual-label .dl-right { background:rgba(9,105,218,0.25); color:#80ccff; }
+    .clickable { cursor:pointer; transition:all 0.3s; }
+    .clickable:hover { transform:translateY(-6px); box-shadow:0 12px 30px rgba(0,0,0,0.12); }
   </style>
 </head>
 
 <body>
 
-  <div class="app-container">
+<div class="app-container">
 
-    <!-- Collapsible Sidebar Slide Index Panel -->
-    <div class="slide-sidebar" id="sidebar">
-      <div class="sidebar-header">
-        <span>📋</span> 汇报PPT
-      </div>
-      <ul class="index-list">
-        <li class="index-item active" onclick="jumpToSlide(0)">
-          <span class="num">01</span> 消防演习大纲封面
-        </li>
-        <li class="index-item" onclick="jumpToSlide(1)">
-          <span class="num">02</span> 项目背景与设计理念
-        </li>
-        <li class="index-item" onclick="jumpToSlide(2)">
-          <span class="num">03</span> 承上启下四大实验联动
-        </li>
-        <li class="index-item" onclick="jumpToSlide(3)">
-          <span class="num">04</span> 系统架构与生命周期
-        </li>
-        <li class="index-item" onclick="jumpToSlide(4)">
-          <span class="num">05</span> 创新点
-        </li>
-        <li class="index-item" onclick="jumpToSlide(5)">
-          <span class="num">06</span> SACS四维科学评分
-        </li>
-        <li class="index-item" onclick="jumpToSlide(6)">
-          <span class="num">07</span> 故障实测成果与健壮度
-        </li>
-        <li class="index-item" onclick="jumpToSlide(7)">
-          <span class="num">08</span> 总结收获与未来展望
-        </li>
-        <li class="index-item" onclick="jumpToSlide(8)">
-          <span class="num">09</span> 答辩总结与致谢
-        </li>
-      </ul>
-    </div>
-
-    <!-- Main Presentation Area -->
-    <div class="presentation-frame">
-
-      <!-- Collapsible Index Button -->
-      <button class="toggle-sidebar-btn" onclick="toggleSidebar()" title="显示/隐藏目录">
-        ☰
-      </button>
-
-      <!-- Viewport of Slides -->
-      <div class="slides-viewport">
-
-        <!-- SLIDE 1: WELCOME TITLE -->
-        <div class="slide slide-welcome active">
-          <div class="logo-hero">Chaos Fire Drill</div>
-          <div class="welcome-subtitle">云原生微服务混沌消防演习沙箱</div>
-          <div class="welcome-meta">
-            期末答辩汇报人：严浩睿、霍秋明<br>
-            集成技术栈：Kubernetes + Vue 3 + Node.js + LLM DevOps Agent<br>
-          </div>
-        </div>
-
-        <!-- SLIDE 2: BACKGROUND & VISION -->
-        <div class="slide">
-          <div class="slide-header">
-            <div class="slide-title">1. 项目背景与核心设计理念</div>
-            <div class="slide-subtitle">Background & Game Concept</div>
-          </div>
-          <div class="grid-2">
-            <div class="card accent-orange">
-              <div class="card-title">💡 传统云原生运维与实验痛点</div>
-              <div class="card-content">
-                <ul>
-                  <li><strong>纸上谈兵无实感</strong>：传统的微服务实验多局限于常规搭建与静态配置，当遭遇高并发雪崩、网络延时波动时，学生缺乏高逼真的实机排障与抢修体验。</li>
-                  <li><strong>指标观测门槛高</strong>：云原生分布式系统底座极其复杂，可观测性指标泛滥，初学者难以在短时间内形成科学、严密的敏捷运维操作直觉。</li>
-                  <li><strong>大模型落地浅尝辄止</strong>：大模型多被用于协助编写配置代码等“离线”开发场景，鲜有与真实生产环境深度穿透并实现双向自愈闭环。</li>
-                </ul>
-              </div>
-            </div>
-            <div class="card accent-green">
-              <div class="card-title">🚒 Chaos Fire Drill 对决竞速沙箱</div>
-              <div class="card-content">
-                <ul>
-                  <li><strong>混沌工程游戏化</strong>：把事故定位与复原抽象为“火灾扑救竞速”，引入预算开销与时间压力模型，引导在严格约束下寻求最优排障路径。</li>
-                  <li><strong>人 🆚 AI 智能体同台博弈</strong>：引入基于 LLM 封装的 AI DevOps Agent 同台诊断。在实时的大屏中直观评估 AI 与人类的现场决策思路与效率差距。
-                  </li>
-                  <li><strong>K8s-Native 实体物理靶场</strong>：绝非伪模拟！每一次在大屏中看到的服务熔断和 Pod 挂死，都是作用于真实的物理容器，自愈指令也是实机运行。</li>
-                </ul>
-              </div>
-            </div>
-          </div>
-        </div>
-
-        <!-- SLIDE 3: INTEGRATION SYNERGY -->
-        <div class="slide">
-          <div class="slide-header">
-            <div class="slide-title">2. 承上启下：课程微服务实验集大成联动</div>
-            <div class="slide-subtitle">Curriculum Experiment Synergy</div>
-          </div>
-          <div class="grid-4">
-            <div class="card">
-              <div class="card-title">📦 实验一</div>
-              <div class="card-content">
-                <strong>Docker 容器化</strong>
-                <p style="margin-top: 0.8rem; font-size: 1.15rem; line-height: 1.6;">
-                  微服务镜像打包发布的基础，为后续物理靶标的搭建与物理资源隔离奠定了最小容器实体。</p>
-              </div>
-            </div>
-            <div class="card">
-              <div class="card-title">☸️ 实验二</div>
-              <div class="card-content">
-                <strong>K8s 容器编排</strong>
-                <p style="margin-top: 0.8rem; font-size: 1.15rem; line-height: 1.6;">构建 Namespace 靶场边界，并深入应用 RBAC 权限设计创建
-                  ServiceAccount 供服务端安全调用集群资源。</p>
-              </div>
-            </div>
-            <div class="card">
-              <div class="card-title">🕸️ 实验三</div>
-              <div class="card-content">
-                <strong>微服务架构</strong>
-                <p style="margin-top: 0.8rem; font-size: 1.15rem; line-height: 1.6;">直接提取微服务实验的核心架构
-                  (frontend/order/product) 作为演练载体，在混沌中完美呈现级联雪崩。</p>
-              </div>
-            </div>
-            <div class="card">
-              <div class="card-title">🔥 实验四</div>
-              <div class="card-content">
-                <strong>混沌工程理论</strong>
-                <p style="margin-top: 0.8rem; font-size: 1.15rem; line-height: 1.6;">
-                  故障设计、故障注入与系统自愈核心理论的集大成落地，为游戏全流程演进提供高维机制支持。</p>
-              </div>
-            </div>
-          </div>
-        </div>
-
-        <!-- SLIDE 4: SYSTEM ARCHITECTURE -->
-        <div class="slide">
-          <div class="slide-header">
-            <div class="slide-title">3. 系统架构设计与交互拓扑</div>
-            <div class="slide-subtitle">System Architecture & Topology</div>
-          </div>
-          <div class="grid-2">
-            <div class="card">
-              <div class="card-title">⚙️ 模块化分层控制设计</div>
-              <div class="card-content">
-                <ul>
-                  <li><strong>高交互 Web 客户端</strong>：基于 Vue 3 打造。将微服务延迟拓扑动态监控与 xterm.js 实时 Linux 指令终端完美结合，支持原生 ANSI 色彩输出。
-                  </li>
-                  <li><strong>游戏控制服务端 (Express+ws)</strong>：搭载五状态闭环状态机，处理竞速全生命周期；评分器 (Scorer) 在故障被修复时对决策效率完成定量计算。</li>
-                  <li><strong>安全指令代理网关 (Terminal Proxy)</strong>：防御前台执行破坏性指令。采用动态参数重写技术，将人类命令安全锁定在独立 Namespace。</li>
-                </ul>
-              </div>
-            </div>
-            <div class="arch-svg-container">
-              <!-- Animated Interactive SVG representing dynamic traffic routing -->
-              <svg viewBox="0 0 400 300" width="100%" height="100%" style="font-family: inherit;">
-                <rect x="10" y="10" width="380" height="280" rx="15" fill="#ffffff" stroke="rgba(0,0,0,0.06)"
-                  stroke-width="2" />
-
-                <!-- Pulsing Nodes -->
-                <g class="node-pulse">
-                  <rect x="35" y="130" width="80" height="40" rx="8" fill="#38bdf8" />
-                  <text x="75" y="155" fill="#0f172a" font-size="10" font-weight="800"
-                    text-anchor="middle">Frontend</text>
-                </g>
-
-                <rect x="160" y="80" width="80" height="40" rx="8" fill="#34d399" />
-                <text x="200" y="105" fill="#0f172a" font-size="10" font-weight="800" text-anchor="middle">Order
-                  Svc</text>
-
-                <rect x="160" y="180" width="80" height="40" rx="8" fill="#34d399" />
-                <text x="200" y="205" fill="#0f172a" font-size="10" font-weight="800" text-anchor="middle">Product
-                  Svc</text>
-
-                <rect x="285" y="130" width="80" height="40" rx="8" fill="#f59e0b" />
-                <text x="325" y="155" fill="#0f172a" font-size="10" font-weight="800" text-anchor="middle">DevOps
-                  Agent</text>
-
-                <!-- Animating Dashed Flow lines -->
-                <path class="flow-line" d="M 115 150 L 160 100" stroke="#0284c7" stroke-width="2" fill="none" />
-                <path class="flow-line" d="M 115 150 L 160 200" stroke="#0284c7" stroke-width="2" fill="none" />
-                <path class="flow-line" d="M 240 100 L 285 150" stroke="#34d399" stroke-width="2" fill="none" />
-                <path class="flow-line" d="M 240 200 L 285 150" stroke="#34d399" stroke-width="2" fill="none" />
-
-                <text x="200" y="260" fill="#475569" font-size="10" text-anchor="middle"
-                  font-weight="500">微服务延迟感知拓扑及实时指令数据流通路</text>
-              </svg>
-            </div>
-          </div>
-        </div>
-
-        <!-- SLIDE 5: COMBINED INNOVATIONS (创新点合一) -->
-        <div class="slide">
-          <div class="slide-header">
-            <div class="slide-title">4. 创新点</div>
-            <div class="slide-subtitle">Core Innovations</div>
-          </div>
-          <div class="grid-4">
-            <div class="card">
-              <div class="card-title">☸️ K8s-Native</div>
-              <div class="card-content">
-                <ul>
-                  <li><strong>物理集群穿透</strong>：每一次状态反馈，均直接真实作用于物理容器节点。</li>
-                  <li><strong>轻量级故障注入</strong>：基于 linux 自带流量控制及 dd 指令，资源开销几乎为零。</li>
-                  <li><strong>秒级自愈还原</strong>：退出或超时自动回滚清理所有故障，维持靶场无残留洁净状态。</li>
-                </ul>
-              </div>
-            </div>
-            <div class="card">
-              <div class="card-title">🔒 安全代理</div>
-              <div class="card-content">
-                <ul>
-                  <li><strong>命名空间硬锁定</strong>：前台命令注入通过正则重写，强制动态追加并替换命名空间。</li>
-                  <li><strong>白名单限制机制</strong>：严格仅允许执行 scale、logs、describe 等 6 种安全可观测命令。</li>
-                  <li><strong>防御脚本命令拼接</strong>：彻底拦截分号、多指令后台运行等字符，封锁系统风险。</li>
-                </ul>
-              </div>
-            </div>
-            <div class="card">
-              <div class="card-title">🔍 快照剪枝</div>
-              <div class="card-content">
-                <ul>
-                  <li><strong>解决可观测噪声</strong>：SRE 数据繁杂，直接发送极易导致大模型在庞杂元数据中“注意力迷失”。</li>
-                  <li><strong>基线差异原子对比</strong>：定时抓取快照并对比 Baseline，仅提炼高信噪比差异数据。</li>
-                  <li><strong>Context 瘦身 75%</strong>：剔除冗余 UUID 和正常服务细节，提供最高精度根因数据。</li>
-                </ul>
-              </div>
-            </div>
-            <div class="card">
-              <div class="card-title">🤖 闭环 Agent</div>
-              <div class="card-content">
-                <ul>
-                  <li><strong>OODA 流程全闭环</strong>：自动化 Observe-Orient-Decide-Action。</li>
-                  <li><strong>CoT 自愈路径推理</strong>：基于思维链智能定位故障，在大屏上实时推送推演理由。</li>
-                  <li><strong>代理指令秒级执行</strong>：AI 自发在靶场调用自愈命令并在下一轮循环自动评估修复结果。</li>
-                </ul>
-              </div>
-            </div>
-          </div>
-        </div>
-
-        <!-- SLIDE 6: MULTI-DIMENSIONAL SCORER -->
-        <div class="slide">
-          <div class="slide-header">
-            <div class="slide-title">5. 科学定量的 SACS 四维评分量化指标</div>
-            <div class="slide-subtitle">Scoring & Quantized Evaluation</div>
-          </div>
-          <div class="grid-4">
-            <div class="card">
-              <div class="card-title">⏱️ Speed</div>
-              <div class="card-content">
-                <strong>抢修速度分 (50%)</strong>
-                <p style="margin-top: 0.8rem; font-size: 1.15rem; line-height: 1.6;">按照自愈所耗时间呈数学线性衰减。完成越快得分越高；超时未完成则直接为
-                  0 分，高度量化时间压力。</p>
-              </div>
-            </div>
-            <div class="card">
-              <div class="card-title">🎯 Accuracy</div>
-              <div class="card-content">
-                <strong>根因准确度 (20%)</strong>
-                <p style="margin-top: 0.8rem; font-size: 1.15rem; line-height: 1.6;">
-                  利用大模型与规则库智能语义匹配排障指令，准确检验是否找出故障源头，防止无脑低效尝试。</p>
-              </div>
-            </div>
-            <div class="card">
-              <div class="card-title">💸 Cost</div>
-              <div class="card-content">
-                <strong>资金开销分 (15%)</strong>
-                <p style="margin-top: 0.8rem; font-size: 1.15rem; line-height: 1.6;">引入虚拟资产开销。人类每更改一次集群状态，或者 AI
-                  每轮大模型交互均扣除预算，惩罚盲目排障。</p>
-              </div>
-            </div>
-            <div class="card">
-              <div class="card-title">📋 Standard</div>
-              <div class="card-content">
-                <strong>操作规范度 (15%)</strong>
-                <p style="margin-top: 0.8rem; font-size: 1.15rem; line-height: 1.6;">审计前台所运行的所有 `kubectl`
-                  语法及结构，错输无效指令将遭到扣分，培养工业级专业规范。</p>
-              </div>
-            </div>
-          </div>
-        </div>
-
-        <!-- SLIDE 7: EXPERIMENT SHOWCASE & CODE STABILITY -->
-        <div class="slide">
-          <div class="slide-header">
-            <div class="slide-title">6. 真实注入实测成果与工程健壮度</div>
-            <div class="slide-subtitle">Verification & Code Stability</div>
-          </div>
-          <div class="grid-2">
-            <div class="card">
-              <div class="card-title">🚒 物理沙箱真实注入表现</div>
-              <div class="card-content">
-                <ul>
-                  <li><strong>磁盘满注入实测 (Easy Mode)</strong>：在 `order-service` 物理容器中瞬间跑满 64MB
-                    临时存储文件。前台利用终端探针锁定异常路径并快速删除，集群秒级回归 100% 正常。</li>
-                  <li><strong>多服务毁灭瘫痪 (Hard Mode)</strong>：`product-service` 遭遇零缩容路由切断，同时邻近 Pod 执行 `kill 1` 遭遇死亡。AI
-                    Agent 结合 OODA 诊断出 product-service 缺失详情，20秒内调用扩容瞬间拉回，自愈品质表现优异。</li>
-                </ul>
-              </div>
-            </div>
-            <div class="card">
-              <div class="card-title">🧪 108 个单元/集成测试用例 100% 通过</div>
-              <div class="card-content">
-                <p>后端采用 Jest 框架构建了全覆盖的单元测试套件：</p>
-                <div class="tab-container">
-                  <div class="tab-headers">
-                    <button class="tab-header active" onclick="switchTab('tab-tests')">Jest 单元测试</button>
-                    <button class="tab-header" onclick="switchTab('tab-k8s')">K8s 自愈命令</button>
-                  </div>
-                  <div id="tab-tests" class="tab-content active">
-                    PASS __tests__/scorer.test.js
-                    PASS __tests__/chaos-injector.test.js
-                    PASS __tests__/terminal-proxy.test.js
-                    PASS __tests__/integration.test.js
-                    PASS __tests__/k8s-client.test.js
-
-                    Test Suites: 8 passed, 8 total
-                    Tests: 108 passed, 108 total
-                    Time: 5.48 s
-                  </div>
-                  <div id="tab-k8s" class="tab-content">
-                    $ kubectl get deployments,pods -n chaos-game
-                    NAME READY AVAILABLE
-                    deployment/product-service 0/0 0
-                    deployment/order-service 1/2 1
-
-                    $ kubectl scale deployment product-service --replicas=2
-                    deployment.apps/product-service scaled
-                  </div>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-
-        <!-- SLIDE 8: LESSONS & LOOKING FORWARD -->
-        <div class="slide">
-          <div class="slide-header">
-            <div class="slide-title">7. 总结收获与未来展望</div>
-            <div class="slide-subtitle">Summary & Future Scope</div>
-          </div>
-          <div class="grid-2">
-            <div class="card accent-green">
-              <div class="card-title">🌟 收获与心得</div>
-              <div class="card-content">
-                <ul>
-                  <li>
-                    <strong>面向故障设计的核心思维</strong>：以前写微服务配置总觉得繁冗，通过在沙箱环境中进行混沌对决，切实认识到健康检查探针、重启退避对于服务韧性（Resilience）的极高保障价值。
-                  </li>
-                  <li><strong>大模型自愈的可行性闭环</strong>：在大规模云端场景中，AI 不仅能帮我们生成静态配置。其在 OODA 自愈决策闭环中的深度参与，证实了 AIOps 智能运维的无限潜力。
-                  </li>
-                </ul>
-              </div>
-            </div>
-            <div class="card accent-orange">
-              <div class="card-title">🚀 未来研究方向</div>
-              <div class="card-content">
-                <ul>
-                  <li><strong>细粒度全链路可观测性</strong>：下一步拟深入集成 Prometheus 及 OpenTelemetry，为大模型提供更多时序性 CPU/网络流量指标，支持精准调优自愈。
-                  </li>
-                  <li><strong>双智能体自进化对抗沙箱</strong>：设计一个能够自主挖掘漏洞的“破坏者 Agent”与负责实时抢修的“自愈 Agent”进行左右互搏，持续压榨微服务弹性机制。</li>
-                  <li><strong>跨多云分布式拓扑</strong>：从单一 Namespace 扩展为多云混合异构环境下的超大规模消防演习靶场，承载全局微服务雪崩实战。</li>
-                </ul>
-              </div>
-            </div>
-          </div>
-        </div>
-
-        <!-- SLIDE 9: THANK YOU -->
-        <div class="slide" style="justify-content: center; align-items: center; text-align: center;">
-          <div class="logo-hero" style="font-size: 8.5rem; margin-bottom: 2rem;">THANK YOU</div>
-          <p style="color: var(--text-muted); font-size: 1.65rem; max-width: 800px; line-height: 1.8;">
-            By 严浩睿、霍秋明<br>
-            云计算大作业期末汇报展示
-          </p>
-        </div>
-
-      </div>
-
-      <!-- Bottom Navigation Controls -->
-      <div class="controls-bar">
-        <button class="nav-btn" id="prev-btn" onclick="navigate(-1)" disabled>
-          ← 上一页 (Prev)
-        </button>
-
-        <div class="progress-bar-container">
-          <div class="progress-bar-fill" id="progress-fill"></div>
-        </div>
-
-        <span class="slide-number" id="slide-num">1 / 9</span>
-
-        <button class="nav-btn" id="next-btn" onclick="navigate(1)">
-          下一页 (Next) →
-        </button>
-      </div>
-
-    </div>
-
+  <!-- Sidebar Index -->
+  <div class="slide-sidebar" id="sidebar">
+    <div class="sidebar-header"><span>📋</span> 答辩PPT</div>
+    <ul class="index-list">
+      <li class="index-item active" onclick="jumpToSlide(0)"><span class="num">01</span> 封面</li>
+      <li class="index-item" onclick="jumpToSlide(1)"><span class="num">02</span> 背景与设计理念</li>
+      <li class="index-item" onclick="jumpToSlide(2)"><span class="num">03</span> 实验联动与三模式架构</li>
+      <li class="index-item" onclick="jumpToSlide(3)"><span class="num">04</span> 系统架构与核心模块</li>
+      <li class="index-item" onclick="jumpToSlide(4)"><span class="num">05</span> AI 引擎与混沌故障体系</li>
+      <li class="index-item" onclick="jumpToSlide(5)"><span class="num">06</span> 创新点总览</li>
+      <li class="index-item" onclick="jumpToSlide(6)"><span class="num">07</span> SACS 评分与云成本模型</li>
+      <li class="index-item" onclick="jumpToSlide(7)"><span class="num">08</span> 测试覆盖与实测成果</li>
+      <li class="index-item" onclick="jumpToSlide(8)"><span class="num">09</span> 总结与展望</li>
+      <li class="index-item" onclick="jumpToSlide(9)"><span class="num">10</span> 致谢</li>
+    </ul>
   </div>
 
-  <script>
-    let currentSlide = 0;
-    const slides = document.querySelectorAll('.slide');
-    const totalSlides = slides.length;
-    const prevBtn = document.getElementById('prev-btn');
-    const nextBtn = document.getElementById('next-btn');
-    const slideNum = document.getElementById('slide-num');
-    const progressFill = document.getElementById('progress-fill');
-    const sidebar = document.getElementById('sidebar');
+  <div class="presentation-frame">
+    <button class="toggle-sidebar-btn" onclick="toggleSidebar()" title="目录">☰</button>
 
-    function updateSlides() {
-      slides.forEach((slide, idx) => {
-        slide.classList.remove('active', 'prev-slide');
-        if (idx === currentSlide) {
-          slide.classList.add('active');
-        } else if (idx < currentSlide) {
-          slide.classList.add('prev-slide');
-        }
-      });
+    <div class="slides-viewport">
 
-      // Controls button state
-      prevBtn.disabled = currentSlide === 0;
-      nextBtn.disabled = currentSlide === totalSlides - 1;
+      <!-- ═══ SLIDE 1: HERO ═══ -->
+      <div class="slide slide-hero active">
+        <div class="logo-hero">Chaos Fire Drill</div>
+        <div class="hero-sub">云原生微服务混沌消防演习沙箱</div>
+        <div class="hero-meta">
+          期末答辩汇报人：严浩睿、霍秋明<br>
+          技术栈：Kubernetes + Vue 3 + Node.js + DeepSeek LLM<br>
+          集成：实验一(OpenStack) → 实验二(K8s微服务) → 混沌工程 + AI 竞速
+        </div>
+      </div>
 
-      // Update slide indicator and progress bar
-      slideNum.textContent = `${currentSlide + 1} / ${totalSlides}`;
-      const percentage = (currentSlide / (totalSlides - 1)) * 100;
-      progressFill.style.width = `${percentage}%`;
+      <!-- ═══ SLIDE 2: BACKGROUND ═══ -->
+      <div class="slide">
+        <div class="slide-header">
+          <div class="slide-title">1. 项目背景与设计理念</div>
+          <div class="slide-subtitle">Why Chaos Fire Drill</div>
+        </div>
+        <div class="grid-2">
+          <div class="card accent-red">
+            <div class="card-title">🔥 课程痛点</div>
+            <div class="card-content">
+              <ul>
+                <li><strong>纸上谈兵</strong>：学生只会 `kubectl apply`，遇到故障完全不知道从何排查。K8s 概念抽象，缺乏实机排障体验。</li>
+                <li><strong>可观测性门槛高</strong>：云原生系统极其复杂，指标泛滥，初学者难以形成科学的运维直觉。</li>
+                <li><strong>AI 落地浅尝辄止</strong>：大模型多用于生成配置代码等"离线"场景，从未与真实生产环境深度穿透形成自愈闭环。</li>
+              </ul>
+            </div>
+          </div>
+          <div class="card accent-green">
+            <div class="card-title">🚒 解决方案：竞速沙箱</div>
+            <div class="card-content">
+              <ul>
+                <li><strong>混沌工程游戏化</strong>：把故障定位与修复抽象为"火灾扑救竞速"，引入时间压力与预算开销约束。</li>
+                <li><strong>人 🆚 AI 同台博弈</strong>：基于 DeepSeek LLM 封装的 AI DevOps Agent 与人类同台诊断，实时对比决策效率。</li>
+                <li><strong>K8s-Native 物理靶场</strong>：绝非模拟！每一次 Pod 挂死、服务熔断都作用于真实容器，自愈指令也实机运行。</li>
+                <li><strong>三实验融合</strong>：从 OpenStack IaaS → K8s CaaS → 混沌工程 → AIOps，一条完整的云原生学习链路。</li>
+              </ul>
+            </div>
+          </div>
+        </div>
+        <div class="stat-row" style="margin-top: 1rem;">
+          <div class="stat"><div class="stat-val">3</div><div class="stat-label">种游戏模式</div></div>
+          <div class="stat"><div class="stat-val">8</div><div class="stat-label">种混沌故障</div></div>
+          <div class="stat"><div class="stat-val">108</div><div class="stat-label">条单元测试</div></div>
+          <div class="stat"><div class="stat-val">100</div><div class="stat-label">分 SACS 四维评分</div></div>
+        </div>
+      </div>
 
-      // Update active state in sidebar list
-      const indexItems = document.querySelectorAll('.index-item');
-      indexItems.forEach((item, idx) => {
-        if (idx === currentSlide) {
-          item.classList.add('active');
-        } else {
-          item.classList.remove('active');
-        }
-      });
+      <!-- ═══ SLIDE 3: EXPERIMENT LINKAGE + 3 MODES ═══ -->
+      <div class="slide">
+        <div class="slide-header">
+          <div class="slide-title">2. 实验联动与三模式架构</div>
+          <div class="slide-subtitle">Curriculum Integration & Three Modes</div>
+        </div>
+        <div class="grid-2">
+          <div class="card accent-blue">
+            <div class="card-title">🔗 四实验完整链路</div>
+            <div class="card-content">
+              <ul>
+                <li><strong>实验一 OpenStack</strong>：掌握 IaaS 层虚拟机管理与CLI操作 → CFD 终端命令设计源于此</li>
+                <li><strong>实验二 K8s 微服务</strong>：Dockerfile、Deployment、Service部署 → CFD 的 <strong>Micro-Demo 模式直接攻击实验二的 demo-micro 集群</strong></li>
+                <li><strong>实验二 Bookinfo</strong>：Istio 服务网格示例 → CFD 的 <strong>Bookinfo 模式攻击 default 命名空间的 4 个微服务</strong></li>
+                <li><strong>CFD 混沌工程</strong>：融合前三者 — K8s排错 + AI竞速 + 成本意识 + 服务网格故障注入</li>
+              </ul>
+              <div class="stat-row">
+                <div class="stat"><div class="stat-val">IaaS</div><div class="stat-label">实验一</div></div>
+                <div style="font-size:2rem;color:var(--blue)">→</div>
+                <div class="stat"><div class="stat-val">CaaS</div><div class="stat-label">实验二</div></div>
+                <div style="font-size:2rem;color:var(--blue)">→</div>
+                <div class="stat"><div class="stat-val">CE</div><div class="stat-label">CFD</div></div>
+                <div style="font-size:2rem;color:var(--blue)">→</div>
+                <div class="stat"><div class="stat-val">AIOps</div><div class="stat-label">AI 引擎</div></div>
+              </div>
+            </div>
+          </div>
+          <div class="card accent-green">
+            <div class="card-title">🎯 三模式渐进学习</div>
+            <div class="card-content">
+              <div class="mode-row" style="margin-bottom:1rem;">
+                <div class="mode-cell head">练习模式</div>
+                <div class="mode-cell head">Micro-Demo</div>
+                <div class="mode-cell head">Bookinfo</div>
+                <div class="mode-cell">Mock 模拟<br><span class="tag tag-green">零风险</span></div>
+                <div class="mode-cell">真实 K8s<br><span class="tag tag-orange">demo-micro</span></div>
+                <div class="mode-cell">真实 K8s<br><span class="tag tag-red">default</span></div>
+                <div class="mode-cell">3 服务 × 2 副本<br>完整仪表盘</div>
+                <div class="mode-cell">3 服务 × 2 副本<br>完整仪表盘</div>
+                <div class="mode-cell">4 服务 × 1 副本<br>完整仪表盘</div>
+                <div class="mode-cell">告警显示故障详情</div>
+                <div class="mode-cell">告警隐藏故障<br>提示访问 30080</div>
+                <div class="mode-cell">告警隐藏故障<br>提示访问 30090</div>
+              </div>
+              <p style="font-size:0.9rem; color:var(--muted);"><strong>核心设计</strong>：三种模式共享统一的完整仪表盘，显示服务卡片、CPU/内存资源条和 Pod 详情。告警通知在实战模式中隐藏故障原因，引导用户通过终端自行排查。</p>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- ═══ SLIDE 4: SYSTEM ARCHITECTURE ═══ -->
+      <div class="slide">
+        <div class="slide-header">
+          <div class="slide-title">3. 系统架构与核心模块</div>
+          <div class="slide-subtitle">Architecture & Module Design</div>
+        </div>
+        <div class="grid-2">
+          <div class="card">
+            <div class="card-title">⚙️ 后端模块架构</div>
+            <div class="card-content" style="font-size:0.9rem;">
+              <ul>
+                <li><strong>StateMachine</strong> — 5 状态 FSM (IDLE→INJECTING→DIAGNOSING→SCORING/TIMEOUT)，不可变快照、Listener 模式</li>
+                <li><strong>ChaosInjector</strong> — 8 种故障随机注入，按难度分层(Easy 6选1 / Hard 8选2)，每故障自带 restoreFn</li>
+                <li><strong>AiEngine</strong> — DeepSeek LLM + 规则引擎双模诊断，流式输出 token-by-token，3-8s 自动修复</li>
+                <li><strong>K8sClient</strong> — Mock/Real 双模式 kubectl 客户端，内存态完整模拟 K8s 集群状态</li>
+                <li><strong>Scorer + CostCalculator</strong> — SACS 四维评分(速度35+准确20+规范15+成本30=100)</li>
+                <li><strong>TerminalProxy</strong> — 白名单(7前缀)+黑名单+命名空间自动注入，防御破坏性命令</li>
+              </ul>
+            </div>
+          </div>
+          <div class="arch-svg">
+            <svg viewBox="0 0 480 360" width="100%" height="100%" style="font-family:inherit;">
+              <rect x="5" y="5" width="470" height="350" rx="12" fill="#fff" stroke="rgba(0,0,0,0.05)" stroke-width="2"/>
+              <!-- Browser -->
+              <rect x="15" y="20" width="110" height="50" rx="6" fill="#38bdf8"/><text x="70" y="42" fill="#0f172a" font-size="14" font-weight="800" text-anchor="middle">Vue 3 前端</text>
+              <!-- Backend -->
+              <rect x="15" y="110" width="110" height="80" rx="6" fill="#34d399"/><text x="70" y="135" fill="#0f172a" font-size="11" font-weight="700" text-anchor="middle">game-server</text><text x="70" y="155" fill="#0f172a" font-size="9" text-anchor="middle">Express + ws</text><text x="70" y="170" fill="#0f172a" font-size="9" text-anchor="middle">5-State FSM</text>
+              <!-- K8s cluster -->
+              <rect x="15" y="240" width="110" height="110" rx="6" fill="#f59e0b"/><text x="70" y="265" fill="#0f172a" font-size="12" font-weight="800" text-anchor="middle">K8s Cluster</text><text x="70" y="285" fill="#0f172a" font-size="9" text-anchor="middle">chaos-game</text><text x="70" y="300" fill="#0f172a" font-size="9" text-anchor="middle">demo-micro</text><text x="70" y="315" fill="#0f172a" font-size="9" text-anchor="middle">default</text>
+
+              <!-- Modules -->
+              <rect x="200" y="30" width="90" height="35" rx="6" fill="#94a3b8"/><text x="245" y="52" fill="#fff" font-size="10" font-weight="700" text-anchor="middle">ChaosInjector</text>
+              <rect x="310" y="30" width="70" height="35" rx="6" fill="#818cf8"/><text x="345" y="52" fill="#fff" font-size="10" font-weight="700" text-anchor="middle">AiEngine</text>
+              <rect x="200" y="80" width="90" height="35" rx="6" fill="#fb923c"/><text x="245" y="102" fill="#fff" font-size="10" font-weight="700" text-anchor="middle">Scorer</text>
+              <rect x="310" y="80" width="90" height="35" rx="6" fill="#4ade80"/><text x="355" y="102" fill="#fff" font-size="10" font-weight="700" text-anchor="middle">TerminalProxy</text>
+
+              <!-- AI API -->
+              <rect x="350" y="150" width="100" height="35" rx="6" fill="#c084fc"/><text x="400" y="172" fill="#fff" font-size="10" font-weight="700" text-anchor="middle">DeepSeek API</text>
+
+              <!-- Flow lines -->
+              <path class="flow-line" d="M 70 70 L 245 52" stroke="#0284c7" stroke-width="2" fill="none"/>
+              <path class="flow-line" d="M 70 70 L 345 52" stroke="#0284c7" stroke-width="2" fill="none"/>
+              <path class="flow-line" d="M 70 190 L 245 102" stroke="#34d399" stroke-width="2" fill="none"/>
+              <path class="flow-line" d="M 70 190 L 355 102" stroke="#34d399" stroke-width="2" fill="none"/>
+              <path class="flow-line" d="M 345 52 L 400 150" stroke="#c084fc" stroke-width="1.5" fill="none" stroke-dasharray="4"/>
+              <path class="flow-line" d="M 245 115 L 70 240" stroke="#f59e0b" stroke-width="2" fill="none"/>
+            </svg>
+          </div>
+        </div>
+      </div>
+
+      <!-- ═══ SLIDE 5: AI ENGINE + FAULTS ═══ -->
+      <div class="slide">
+        <div class="slide-header">
+          <div class="slide-title">4. AI 引擎与混沌故障体系</div>
+          <div class="slide-subtitle">AI Engine & 8 Chaos Faults</div>
+        </div>
+        <div class="grid-2">
+          <div class="card accent-purple">
+            <div class="card-title">🤖 AI 引擎架构</div>
+            <div class="card-content" style="font-size:0.9rem;">
+              <ul>
+                <li><strong>LLM 诊断</strong>：基线快照 vs 当前状态 → Prompt 工程 → DeepSeek API (<code>temperature=0.1</code>)</li>
+                <li><strong>流式输出</strong>：AsyncGenerator 逐 token yield，前端实时展示 AI 思考过程</li>
+                <li><strong>规则引擎回退</strong>：无 API Key 时自动切换 — 7 级优先级级联检测</li>
+                <li><strong>修复验证</strong>：attemptRepair() 检查命令模式(scale+replicas / exec+pkill+tc+rm / rollout restart)，拒绝诊断命令</li>
+                <li><strong>竞速设计</strong>：AI 给人类 10s 先手 → 诊断 3-8s → 超时自动修复</li>
+              </ul>
+              <div class="code-block" style="font-size:0.8rem;">
+                规则引擎优先级：notReady Pods → CPU>80% → Memory>80% → restarts>0 → available=0 → ready&lt;expected
+              </div>
+            </div>
+          </div>
+          <div class="card accent-red">
+            <div class="card-title">💥 8 种混沌故障</div>
+            <div class="card-content">
+              <div class="fault-grid">
+                <div class="fault-card"><div class="name">scale-to-zero</div><div class="desc">Deployment→0 副本</div><span class="tag tag-red">Easy+Hard</span></div>
+                <div class="fault-card"><div class="name">kill-random-pod</div><div class="desc">缩容至 0 副本</div><span class="tag tag-red">Easy+Hard</span></div>
+                <div class="fault-card"><div class="name">cpu-stress</div><div class="desc">Pod 内死循环</div><span class="tag tag-orange">Easy+Hard</span></div>
+                <div class="fault-card"><div class="name">memory-leak</div><div class="desc">Pod 内存泄漏</div><span class="tag tag-orange">Easy+Hard</span></div>
+                <div class="fault-card"><div class="name">disk-full</div><div class="desc">Pod 磁盘写满</div><span class="tag tag-orange">Easy+Hard</span></div>
+                <div class="fault-card"><div class="name">process-crash</div><div class="desc">Deployment→0 副本</div><span class="tag tag-orange">Easy+Hard</span></div>
+                <div class="fault-card"><div class="name">network-delay</div><div class="desc">tc netem 5000ms</div><span class="tag tag-purple">Hard Only</span></div>
+                <div class="fault-card"><div class="name">kill-two-pods</div><div class="desc">两服务同时缩容</div><span class="tag tag-purple">Hard Only</span></div>
+              </div>
+              <table style="width:100%; border-collapse:collapse; font-size:1.1rem; margin-top:1rem;">
+                <tr style="background:#f8fafc;"><td style="padding:8px 10px;font-weight:700;">层级</td><td style="padding:8px 10px;font-weight:700;">对应故障</td></tr>
+                <tr><td style="padding:8px 10px;">📱 应用层</td><td style="padding:8px 10px;">process-crash（杀进程）</td></tr>
+                <tr style="background:#f8fafc;"><td style="padding:8px 10px;">💾 资源层</td><td style="padding:8px 10px;">cpu-stress / memory-leak / disk-full</td></tr>
+                <tr><td style="padding:8px 10px;">🌐 网络层</td><td style="padding:8px 10px;">network-delay（tc netem 注入）</td></tr>
+                <tr style="background:#f8fafc;"><td style="padding:8px 10px;">☸️ 基础设施层</td><td style="padding:8px 10px;">scale-to-zero / kill-random-pod / kill-two-pods</td></tr>
+              </table>
+            </div>
+          </div>
+        </div>
+        <p style="text-align:center; color:var(--muted); font-size:1.1rem; margin-top:0.8rem;">基于 Netflix Chaos Monkey 混沌工程成熟度模型分层设计 → 覆盖从应用到基础设施的全栈故障注入</p>
+      </div>
+
+      <!-- ═══ SLIDE 6: INNOVATIONS ═══ -->
+      <div class="slide">
+        <div class="slide-header">
+          <div class="slide-title">5. 创新点总览</div>
+          <div class="slide-subtitle">Core Innovations</div>
+        </div>
+        <div class="grid-4">
+          <div class="card">
+            <div class="card-title"> AI 竞速</div>
+            <div class="card-content" style="font-size:0.88rem;">
+              <ul>
+                <li>AI 不是助手，是<strong>限时对手</strong></li>
+                <li>LLM 流式诊断 token-by-token</li>
+                <li>超时 AI 自动修复并展示全过程</li>
+                <li>LLM-agnostic：换任何 API 即用</li>
+              </ul>
+            </div>
+          </div>
+          <div class="card">
+            <div class="card-title"> 资源监控</div>
+            <div class="card-content" style="font-size:0.88rem;">
+              <ul>
+                <li>实时 CPU/内存使用率柱状条</li>
+                <li>cpu-stress/memory-leak 一眼定位</li>
+                <li>Pod 详情可折叠展开</li>
+                <li>故障摘要 + 修复命令提示</li>
+              </ul>
+            </div>
+          </div>
+          <div class="card">
+            <div class="card-title"> Webhook</div>
+            <div class="card-content" style="font-size:0.88rem;">
+              <ul>
+                <li>故障注入时弹出 on-call 通知</li>
+                <li>Critical 级别红色+抖动动画</li>
+                <li>实战模式隐藏原因仅给 URL</li>
+                <li>15 秒自动消失，可手动关闭</li>
+              </ul>
+            </div>
+          </div>
+          <div class="card">
+            <div class="card-title"> 虚拟账单</div>
+            <div class="card-content" style="font-size:0.88rem;">
+              <ul>
+                <li>每轮游戏出模拟云账单</li>
+                <li>Pod费+停机费+命令费+过度配置费</li>
+                <li>成本权重30%，影响胜负</li>
+                <li>培养 FinOps 成本意识</li>
+              </ul>
+            </div>
+          </div>
+          <div class="card">
+            <div class="card-title"> 安全代理</div>
+            <div class="card-content" style="font-size:0.88rem;">
+              <ul>
+                <li>白名单仅允许 7 种操作</li>
+                <li>拦截 delete/apply/create 等</li>
+                <li>自动注入命名空间 -n</li>
+                <li>防 shell 注入 (;|&&||``|$())</li>
+              </ul>
+            </div>
+          </div>
+          <div class="card">
+            <div class="card-title"> Mock 双模</div>
+            <div class="card-content" style="font-size:0.88rem;">
+              <ul>
+                <li>Mock 模式：内存态完整 K8s</li>
+                <li>零依赖运行，无需真实集群</li>
+                <li>真实模式：kubectl 直连集群</li>
+                <li>两种模式前端无差别</li>
+              </ul>
+            </div>
+          </div>
+          <div class="card">
+            <div class="card-title"> K8s-Native</div>
+            <div class="card-content" style="font-size:0.88rem;">
+              <ul>
+                <li><strong>物理集群穿透</strong>：每一次状态反馈均直接作用于真实容器节点</li>
+                <li><strong>轻量级故障注入</strong>：基于 Linux 自带 tc 及 dd 指令，资源开销几乎为零</li>
+                <li><strong>秒级自愈还原</strong>：退出或超时自动回滚清理，维持靶场无残留洁净状态</li>
+              </ul>
+            </div>
+          </div>
+          <div class="card">
+            <div class="card-title"> Dogfooding</div>
+            <div class="card-content" style="font-size:0.88rem;">
+              <ul>
+                <li>game-server 运行在攻击的集群内</li>
+                <li>ClusterRole 跨命名空间权限</li>
+                <li>单 Pod 部署(前端+后端+kubectl)</li>
+                <li>Secret 注入 LLM 凭证</li>
+              </ul>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- ═══ SLIDE 7: SCORING ═══ -->
+      <div class="slide">
+        <div class="slide-header">
+          <div class="slide-title">6. SACS 四维科学评分与云成本模型</div>
+          <div class="slide-subtitle">Scoring & Cloud Cost Model</div>
+        </div>
+        <div class="grid-2">
+          <div class="card">
+            <div class="card-title">📐 SACS 评分公式 (100分)</div>
+            <div class="card-content" style="font-size:0.9rem;">
+              <div class="stat-row">
+                <div class="stat"><div class="stat-val" style="color:var(--blue)">35</div><div class="stat-label">Speed 速度</div></div>
+                <div class="stat"><div class="stat-val" style="color:var(--green)">20</div><div class="stat-label">Accuracy 准确</div></div>
+                <div class="stat"><div class="stat-val" style="color:var(--orange)">15</div><div class="stat-label">Standard 规范</div></div>
+                <div class="stat"><div class="stat-val" style="color:var(--red)">30</div><div class="stat-label">Cost 成本</div></div>
+              </div>
+              <ul>
+                <li><strong>Speed</strong>：人与 AI 时间比分配。人用时/总用时越低，分越高</li>
+                <li><strong>Accuracy</strong>：命令模式匹配故障类型。8 级精度，精准修复满分</li>
+                <li><strong>Standard</strong>：kubectl 语法规范。AI 默认满分(+15)，人类需争夺</li>
+                <li><strong>Cost</strong>：谁的云账单更低。关键决胜维度，占比 30%</li>
+              </ul>
+            </div>
+          </div>
+          <div class="card accent-green">
+            <div class="card-title">💸 云成本模拟 (FinOps)</div>
+            <div class="card-content" style="font-size:0.9rem;">
+              <table style="width:100%; border-collapse:collapse; font-size:1.3rem;">
+                <tr style="background:#f8fafc;"><td style="padding:10px 14px;font-weight:700;">收费项</td><td style="padding:10px 14px;font-weight:700;">费率</td></tr>
+                <tr><td style="padding:10px 14px;">Pod 运行费</td><td style="padding:10px 14px;">$0.03 /pod/分钟</td></tr>
+                <tr style="background:#f8fafc;"><td style="padding:10px 14px;">停机损失费</td><td style="padding:10px 14px;color:var(--red);font-weight:700;">$0.05 /秒</td></tr>
+                <tr><td style="padding:10px 14px;">命令执行费</td><td style="padding:10px 14px;">$0.02 /条</td></tr>
+                <tr style="background:#f8fafc;"><td style="padding:10px 14px;">过度配置罚款</td><td style="padding:10px 14px;">$0.15 /多余pod/分钟</td></tr>
+              </table>
+              <p style="margin-top:1.2rem; font-size:1.15rem; color:var(--muted);"><strong>设计意图</strong>：快速盲目 scale 到高副本 = 过度配置罚款。慢速精确修复 = 停机费高。最优策略：<strong>快速 + 精准 + 经济</strong>。</p>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- ═══ SLIDE 8: TESTING & RESULTS ═══ -->
+      <div class="slide" style="overflow-y:auto;">
+        <div class="slide-header">
+          <div class="slide-title">7. 测试覆盖与实测成果</div>
+          <div class="slide-subtitle">Test Coverage & Live Demo Results</div>
+        </div>
+
+        <!-- Row 1: Test Stats Bar -->
+        <div class="stat-row" style="margin-bottom:1.5rem;">
+          <div class="stat"><div class="stat-val">13</div><div class="stat-label">测试套件</div></div>
+          <div class="stat"><div class="stat-val">108</div><div class="stat-label">测试用例</div></div>
+          <div class="stat"><div class="stat-val">100%</div><div class="stat-label">通过率</div></div>
+          <div class="stat"><div class="stat-val">8</div><div class="stat-label">覆盖模块</div></div>
+        </div>
+
+        <!-- Row 2: Test Detail + Injection Cases -->
+        <div class="grid-2" style="height:auto;flex:1;overflow:hidden;">
+          <div class="card accent-green">
+            <div class="card-title">🧪 模块测试覆盖明细</div>
+            <div class="card-content" style="font-size:0.85rem;">
+              <table style="width:100%;border-collapse:collapse;font-size:1.2rem;">
+                <tr style="background:#f8fafc;font-weight:700;"><td style="padding:8px 10px;">模块</td><td style="padding:8px 10px;text-align:center;">用例</td><td style="padding:8px 10px;">核心验证</td></tr>
+                <tr><td style="padding:8px 10px;">state-machine</td><td style="padding:8px 10px;text-align:center;">21</td><td style="padding:8px 10px;">5状态FSM、非法转换拦截、修复计时</td></tr>
+                <tr style="background:#f8fafc;"><td style="padding:8px 10px;">k8s-client</td><td style="padding:8px 10px;text-align:center;">19</td><td style="padding:8px 10px;">Mock/Real双模、健康检查五维判断</td></tr>
+                <tr><td style="padding:8px 10px;">scorer</td><td style="padding:8px 10px;text-align:center;">17</td><td style="padding:8px 10px;">SACS四维评分、成本对比、NaN防护</td></tr>
+                <tr style="background:#f8fafc;"><td style="padding:8px 10px;">terminal-proxy</td><td style="padding:8px 10px;text-align:center;">17</td><td style="padding:8px 10px;">白名单拦截、shell注入防御、NS注入</td></tr>
+                <tr><td style="padding:8px 10px;">chaos-injector</td><td style="padding:8px 10px;text-align:center;">10</td><td style="padding:8px 10px;">8种故障注入、降级回退、恢复验证</td></tr>
+                <tr style="background:#f8fafc;"><td style="padding:8px 10px;">ai-engine</td><td style="padding:8px 10px;text-align:center;">10</td><td style="padding:8px 10px;">LLM诊断、规则引擎7级级联</td></tr>
+              </table>
+            </div>
+          </div>
+          <div class="card accent-red">
+            <div class="card-title">🚒 真实双命名空间注入实测</div>
+            <div class="card-content" style="font-size:0.82rem;">
+              <table style="width:100%;border-collapse:collapse;font-size:1.15rem;">
+                <tr style="background:#f8fafc;font-weight:700;"><td style="padding:7px 8px;">故障</td><td style="padding:7px 8px;">目标</td><td style="padding:7px 8px;">现象</td><td style="padding:7px 8px;">修复</td></tr>
+                <tr><td style="padding:7px 8px;">cpu-stress</td><td style="padding:7px 8px;">frontend-dm</td><td style="padding:7px 8px;">CPU 92%</td><td style="padding:7px 8px;">~3s restart</td></tr>
+                <tr style="background:#f8fafc;"><td style="padding:7px 8px;">disk-full</td><td style="padding:7px 8px;">order-svc-dm</td><td style="padding:7px 8px;">/tmp 100%</td><td style="padding:7px 8px;">~5s rm</td></tr>
+                <tr><td style="padding:7px 8px;">process-crash</td><td style="padding:7px 8px;">productpage</td><td style="padding:7px 8px;">0/0 页面404</td><td style="padding:7px 8px;">~3s scale</td></tr>
+                <tr style="background:#f8fafc;"><td style="padding:7px 8px;">kill-two-pods</td><td style="padding:7px 8px;">prod+details</td><td style="padding:7px 8px;">双服务0/0</td><td style="padding:7px 8px;">~6s scale×2</td></tr>
+                <tr><td style="padding:7px 8px;">network-delay</td><td style="padding:7px 8px;">prod-svc-dm</td><td style="padding:7px 8px;">ready 0/1</td><td style="padding:7px 8px;">~3s restart</td></tr>
+                <tr style="background:#f8fafc;"><td style="padding:7px 8px;">memory-leak</td><td style="padding:7px 8px;">frontend-cg</td><td style="padding:7px 8px;">MEM 96%</td><td style="padding:7px 8px;">~8s AI修复</td></tr>
+              </table>
+            </div>
+          </div>
+        </div>
+
+        <!-- Row 3: Key Test Scenarios -->
+        <div class="grid-4" style="height:auto; margin-top:1rem;">
+          <div class="fault-card" style="padding:1rem;font-size:1.15rem;"><div class="name" style="font-size:1.3rem;">非法状态转换</div><div class="desc" style="font-size:1.05rem;">DIAGNOSING→IDLE 被拒绝 ✓</div></div>
+          <div class="fault-card" style="padding:1rem;font-size:1.15rem;"><div class="name" style="font-size:1.3rem;">命令注入防御</div><div class="desc" style="font-size:1.05rem;">`kubectl get pods; rm -rf /` 被拦截 ✓</div></div>
+          <div class="fault-card" style="padding:1rem;font-size:1.15rem;"><div class="name" style="font-size:1.3rem;">LLM 回退</div><div class="desc" style="font-size:1.05rem;">无API Key时规则引擎接管 ✓</div></div>
+          <div class="fault-card" style="padding:1rem;font-size:1.15rem;"><div class="name" style="font-size:1.3rem;">跨NS注入</div><div class="desc" style="font-size:1.05rem;">chaos-game → demo-micro/default ✓</div></div>
+          <div class="fault-card" style="padding:1rem;font-size:1.15rem;"><div class="name" style="font-size:1.3rem;">故障降级</div><div class="desc" style="font-size:1.05rem;">tc不可用 → scale-to-zero ✓</div></div>
+          <div class="fault-card" style="padding:1rem;font-size:1.15rem;"><div class="name" style="font-size:1.3rem;">AI竞速</div><div class="desc" style="font-size:1.05rem;">10s先手 → 3-8s修复 → 评分 ✓</div></div>
+          <div class="fault-card" style="padding:1rem;font-size:1.15rem;"><div class="name" style="font-size:1.3rem;">成本计算</div><div class="desc" style="font-size:1.05rem;">停机费$0.05/s + Pod费$0.03/min ✓</div></div>
+          <div class="fault-card" style="padding:1rem;font-size:1.15rem;"><div class="name" style="font-size:1.3rem;">流式诊断</div><div class="desc" style="font-size:1.05rem;">Token-by-token SSE 实时渲染 ✓</div></div>
+        </div>
+      </div>
+
+      <!-- ═══ SLIDE 9: SUMMARY ═══ -->
+      <div class="slide">
+        <div class="slide-header">
+          <div class="slide-title">8. 总结与未来展望</div>
+          <div class="slide-subtitle">Summary & Future</div>
+        </div>
+        <div class="grid-3">
+          <div class="card accent-green">
+            <div class="card-title">🌟 收获</div>
+            <div class="card-content" style="font-size:0.9rem;">
+              <ul>
+                <li><strong>面向故障的设计思维</strong>：通过混沌对抗，深刻理解健康检查探针、重启退避对服务韧性的保障价值。</li>
+                <li><strong>AIOps 自愈可行性</strong>：LLM + 规则引擎在真实 K8s 集群中实现 OODA 闭环(Observe-Orient-Decide-Act)。</li>
+                <li><strong>安全 Agent 设计</strong>：白名单+黑名单+命名空间隔离=防御深度架构。</li>
+              </ul>
+            </div>
+          </div>
+          <div class="card accent-orange">
+            <div class="card-title">🚀 未来方向</div>
+            <div class="card-content" style="font-size:0.9rem;">
+              <ul>
+                <li><strong>多人竞速模式</strong>：双人同集群排错，实时指令对比</li>
+                <li><strong>故障回放系统</strong>：录制+回放操作序列，用于教学复盘</li>
+                <li><strong>双 Agent 对抗</strong>："破坏者Agent" vs "自愈Agent" 左右互搏</li>
+              </ul>
+            </div>
+          </div>
+          <div class="card accent-purple">
+            <div class="card-title">💡 核心贡献</div>
+            <div class="card-content" style="font-size:0.9rem;">
+              <ul>
+                <li><strong>教育创新</strong>：游戏化混沌工程 + 竞争驱动学习</li>
+                <li><strong>技术融合</strong>：IaaS→CaaS→AIOps 全栈覆盖</li>
+                <li><strong>工程实践</strong>：108 测试 + Docker 部署 + RBAC 安全</li>
+                <li><strong>AI 创新</strong>：LLM 竞速对手 + 流式诊断 + 自动修复</li>
+              </ul>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- ═══ SLIDE 10: THANK YOU ═══ -->
+      <div class="slide" style="justify-content:center;align-items:center;text-align:center;">
+        <div class="logo-hero" style="font-size:8.5rem;margin-bottom:2rem;">THANK YOU</div>
+        <p style="color:var(--muted);font-size:1.5rem;max-width:800px;line-height:1.8;">
+          汇报人：严浩睿、霍秋明<br>
+          云计算大作业期末汇报<br>
+          技术栈：K8s + Vue 3 + Node.js + DeepSeek LLM
+        </p>
+      </div>
+
+    </div>
+
+    <!-- Controls -->
+    <div class="controls-bar">
+      <button class="nav-btn" id="prev-btn" onclick="navigate(-1)" disabled>← 上一页</button>
+      <div class="progress-bar-container"><div class="progress-bar-fill" id="progress-fill"></div></div>
+      <span class="slide-num" id="slide-num">1 / 10</span>
+      <button class="nav-btn" id="next-btn" onclick="navigate(1)">下一页 →</button>
+    </div>
+  </div>
+</div>
+
+<!-- Image Modal -->
+<div class="img-modal" id="imgModal" onclick="closeModal()">
+  <div class="img-modal-inner" onclick="event.stopPropagation()">
+    <button class="img-modal-close" onclick="closeModal()">✕</button>
+    <div class="img-row" id="imgRow">
+      <img id="modalImg" src="" alt="" class="modal-single">
+    </div>
+    <div class="img-modal-caption" id="modalCaption"></div>
+    <div class="dual-label" id="dualLabel" style="display:none;"></div>
+  </div>
+</div>
+
+<script>
+  let cur = 0;
+  const images = {
+    game:'图片/游戏主页面.png',
+    dashboard:'图片/仪表盘.png',
+    aiduel:'图片/AI对决.png',
+    llm:'图片/deepseekLLM模型配置.png',
+    billing:'图片/虚拟账单.png',
+    webhook:'图片/Webhook.png',
+    webhook2:'图片/Webhook2.png',
+    timeout:'图片/超时.png',
+    mockdual:'图片/Mock双模.png',
+    k8native:'图片/K8s-native.png',
+    realcluster:'图片/真实集群.png'
+  };
+  function showModal(imgKey, caption) {
+    if(!imgKey){ return; }
+    var row = document.getElementById('imgRow');
+    var cap = document.getElementById('modalCaption');
+    var label = document.getElementById('dualLabel');
+    // Clear existing images
+    row.innerHTML = '';
+    label.style.display = 'none';
+    if(imgKey.indexOf(',')>=0){
+      var keys = imgKey.split(',');
+      var img1 = document.createElement('img');
+      img1.src = images[keys[0]];
+      img1.className = 'modal-dual';
+      row.appendChild(img1);
+      var img2 = document.createElement('img');
+      img2.src = images[keys[1]];
+      img2.className = 'modal-dual';
+      row.appendChild(img2);
+      label.innerHTML = '<span class=dl-left>左：AI 实时对决面板</span><span class=dl-right>右：超时自动修复 · 流式诊断</span>';
+      label.style.display = 'flex';
+    } else {
+      var img = document.createElement('img');
+      img.src = images[imgKey];
+      img.className = 'modal-single';
+      row.appendChild(img);
     }
+    cap.textContent = caption;
+    document.getElementById('imgModal').classList.add('show');
+  }
+  function closeModal() {
+    document.getElementById('imgModal').classList.remove('show');
+  }
+  document.addEventListener('keydown', e => { if(e.key==='Escape') closeModal(); });
+  const slides = document.querySelectorAll('.slide');
+  const total = slides.length;
+  const prev = document.getElementById('prev-btn');
+  const next = document.getElementById('next-btn');
+  const num = document.getElementById('slide-num');
+  const bar = document.getElementById('progress-fill');
+  const sb = document.getElementById('sidebar');
 
-    function navigate(direction) {
-      currentSlide = Math.max(0, Math.min(totalSlides - 1, currentSlide + direction));
-      updateSlides();
+  function update() {
+    slides.forEach((s, i) => { s.classList.remove('active', 'prev-slide'); if (i === cur) s.classList.add('active'); else if (i < cur) s.classList.add('prev-slide'); });
+    prev.disabled = cur === 0;
+    next.disabled = cur === total - 1;
+    num.textContent = `${cur + 1} / ${total}`;
+    bar.style.width = `${(cur / (total - 1)) * 100}%`;
+    document.querySelectorAll('.index-item').forEach((el, i) => el.classList.toggle('active', i === cur));
+  }
+
+  function navigate(d) { cur = Math.max(0, Math.min(total - 1, cur + d)); update(); }
+  function jumpToSlide(i) { cur = i; update(); }
+  function toggleSidebar() { sb.classList.toggle('collapsed'); }
+
+  document.addEventListener('keydown', e => {
+    if (e.key === 'ArrowRight' || e.key === ' ') { e.preventDefault(); navigate(1); }
+    if (e.key === 'ArrowLeft') { e.preventDefault(); navigate(-1); }
+  });
+  update();
+  // Wire up innovation card click handlers
+  setTimeout(function(){
+    var cards = document.querySelectorAll('.slide:nth-child(6) .card');
+    var imgMap = [
+      ['aiduel,timeout','AI竞速：AI对决面板 + 超时自动修复流式诊断'],
+      ['dashboard','资源监控：集群仪表盘实时CPU/MEM'],
+      ['webhook,webhook2','Webhook告警：故障注入触发 on-call 通知 + 实战模式隐藏故障引导排查'],
+      ['billing','虚拟账单：四维评分 + 云成本明细对比'],
+      ['llm','安全代理：DeepSeek LLM配置 + 命令白名单'],
+      ['mockdual,realcluster','Mock双模：内存态零依赖K8s模拟 vs 真实kubectl直连集群'],
+      ['k8native','K8s-Native：物理集群穿透 + 轻量级故障注入'],
+      [null,null]
+    ];
+    for(var i=0;i<cards.length&&i<imgMap.length;i++){
+      if(!imgMap[i][0]) continue; // skip cards with no image
+      cards[i].classList.add('clickable');
+      cards[i].setAttribute('title','点击查看演示图片');
+      (function(idx){
+        cards[idx].addEventListener('click',function(){
+          showModal(imgMap[idx][0],imgMap[idx][1]);
+        });
+      })(i);
     }
-
-    function jumpToSlide(index) {
-      currentSlide = index;
-      updateSlides();
-    }
-
-    function toggleSidebar() {
-      sidebar.classList.toggle('collapsed');
-    }
-
-    // Keyboard support
-    document.addEventListener('keydown', (e) => {
-      if (e.key === 'ArrowRight' || e.key === 'Space') {
-        e.preventDefault();
-        navigate(1);
-      } else if (e.key === 'ArrowLeft') {
-        e.preventDefault();
-        navigate(-1);
-      }
-    });
-
-    // Tab switcher helper inside Slide 8
-    function switchTab(tabId) {
-      const container = document.getElementById(tabId).parentElement;
-      const headers = container.querySelectorAll('.tab-header');
-      const contents = container.querySelectorAll('.tab-content');
-
-      headers.forEach(h => h.classList.remove('active'));
-      contents.forEach(c => c.classList.remove('active'));
-
-      document.getElementById(tabId).classList.add('active');
-      // Highlight the correct header
-      const targetHeader = Array.from(headers).find(h => {
-        return h.getAttribute('onclick').includes(tabId);
-      });
-      if (targetHeader) targetHeader.classList.add('active');
-    }
-
-    // Initialize progress bar width on load
-    updateSlides();
-  </script>
+  },500);
+</script>
 </body>
-
 </html>

@@ -2,12 +2,12 @@
 
 const FAULT_POOL = {
   easy: [
-    { type: 'kill-random-pod', description: '将某个 Deployment 缩容到 1 副本' },
+    { type: 'kill-random-pod', description: '将某个 Deployment 副本数缩为 0' },
     { type: 'scale-to-zero', description: '将某个 Deployment 副本数缩为 0' },
     { type: 'cpu-stress', description: '对某个 Pod 注入 CPU 压力' },
     { type: 'memory-leak', description: '对某个 Pod 注入内存泄漏' },
     { type: 'disk-full', description: '将某个 Pod 的磁盘写满' },
-    { type: 'process-crash', description: '将某个 Pod 的主进程杀死' },
+    { type: 'process-crash', description: '将某个 Deployment 副本数缩为 0' },
   ],
   hard: [
     { type: 'kill-random-pod', description: '将某个 Deployment 缩容到 1 副本' },
@@ -28,6 +28,7 @@ class ChaosInjector {
     this.k8s = k8sClient;
     this.targets = TARGET_SERVICES;
     this.restoreReplicas = 2;
+    this.scaleOnly = false;
   }
 
   setTargets(targets, replicas = 2) {
@@ -35,8 +36,16 @@ class ChaosInjector {
     this.restoreReplicas = replicas;
   }
 
+  setScaleOnly(enabled) {
+    this.scaleOnly = enabled;
+  }
+
   pickFault(difficulty) {
-    const pool = FAULT_POOL[difficulty] || FAULT_POOL.easy;
+    let pool = FAULT_POOL[difficulty] || FAULT_POOL.easy;
+    if (this.scaleOnly) {
+      pool = pool.filter(f => f.type === 'kill-random-pod' || f.type === 'scale-to-zero' ||
+        f.type === 'kill-two-pods' || f.type === 'process-crash');
+    }
     const count = difficulty === 'hard' ? 2 : 1;
     const faults = [];
     const usedTargets = new Set();
@@ -78,7 +87,7 @@ class ChaosInjector {
       case 'disk-full':
         return { method: 'exec', target, command: 'rm -f /tmp/bigfile' };
       case 'process-crash':
-        return { method: 'wait-recreate', description: '等待 K8s 自动重启 Pod' };
+        return { method: 'scale', replicas: this.restoreReplicas, target, command: `kubectl scale deployment ${target} --replicas=${this.restoreReplicas}` };
       default:
         return { method: 'manual' };
     }
@@ -104,8 +113,8 @@ class ChaosInjector {
   async _executeFault(fault) {
     switch (fault.type) {
       case 'kill-random-pod': {
-        // Scale to 1 replica — prevents auto-heal, user must scale back to 2
-        this.k8s.scaleDeployment(fault.target, 1);
+        // Scale to 0 — service immediately unavailable, user must scale back
+        this.k8s.scaleDeployment(fault.target, 0);
         break;
       }
       case 'scale-to-zero': {
@@ -117,18 +126,18 @@ class ChaosInjector {
         const targetPods = pods.filter(p => p.name.startsWith(fault.target));
         if (targetPods.length > 0) {
           const victim = targetPods[0];
-          this.k8s.execInPod(victim.name, 'tc qdisc add dev eth0 root netem delay 500ms');
+          this.k8s.execInPod(victim.name, 'tc qdisc add dev eth0 root netem delay 5000ms');
           fault.podAffected = victim.name;
         }
         break;
       }
       case 'kill-two-pods': {
-        // Scale to 1 replica on two different services
+        // Scale two services to 0 — double crash
         const otherServices = this.targets.filter(s => s !== fault.target);
         const secondTarget = otherServices[Math.floor(Math.random() * otherServices.length)];
         fault.secondTarget = secondTarget;
-        this.k8s.scaleDeployment(fault.target, 1);
-        this.k8s.scaleDeployment(secondTarget, 1);
+        this.k8s.scaleDeployment(fault.target, 0);
+        this.k8s.scaleDeployment(secondTarget, 0);
         break;
       }
       case 'cpu-stress': {
@@ -162,13 +171,7 @@ class ChaosInjector {
         break;
       }
       case 'process-crash': {
-        const pods = this.k8s.getPods();
-        const targetPods = pods.filter(p => p.name.startsWith(fault.target));
-        if (targetPods.length > 0) {
-          const victim = targetPods[0];
-          this.k8s.execInPod(victim.name, 'kill 1');
-          fault.podAffected = victim.name;
-        }
+        this.k8s.scaleDeployment(fault.target, 0);
         break;
       }
     }

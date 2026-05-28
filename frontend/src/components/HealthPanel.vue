@@ -1,29 +1,8 @@
 <template>
   <div class="health-panel">
-    <h3>{{ panelTitle }}</h3>
+    <h3>集群健康状态</h3>
 
-    <!-- REAL MODE: Signal lights only during DIAGNOSING -->
-    <div v-if="isHiddenMode" class="signal-section">
-      <p class="signal-hint">运维模式：请使用终端排查故障</p>
-      <div class="signal-row">
-        <span
-          v-for="s in signalLights"
-          :key="s.name"
-          class="signal-dot"
-          :class="s.status"
-          :title="s.name"
-        ></span>
-      </div>
-      <div class="signal-legend">
-        <span class="legend-item"><span class="legend-dot green"></span>正常</span>
-        <span class="legend-item"><span class="legend-dot yellow"></span>降级</span>
-        <span class="legend-item"><span class="legend-dot red"></span>异常</span>
-      </div>
-    </div>
-
-    <!-- PRACTICE MODE or SCORING: Full detailed view -->
-    <div v-else>
-      <div class="service-cards">
+    <div class="service-cards">
         <div
           v-for="svc in services"
           :key="svc.name"
@@ -74,7 +53,6 @@
           <span class="pod-status">{{ pod.ready }}</span>
           <span class="pod-restarts" v-if="pod.restarts > 0">R:{{ pod.restarts }}</span>
         </div>
-      </div>
     </div>
   </div>
 </template>
@@ -92,19 +70,6 @@ export default {
     return { showPods: false };
   },
   computed: {
-    isHiddenMode() {
-      return (this.gameMode === 'micro-demo' || this.gameMode === 'bookinfo') && this.gameStatus !== 'SCORING' && this.gameStatus !== 'TIMEOUT';
-    },
-    panelTitle() {
-      if (this.isHiddenMode) return '服务信号灯';
-      return '集群健康状态';
-    },
-    signalLights() {
-      return this.services.map(s => ({
-        name: s.name,
-        status: s.statusClass,
-      }));
-    },
     deployments() { return this.snapshot.deployments || []; },
     pods() { return this.snapshot.pods || []; },
     hasFaults() {
@@ -121,10 +86,12 @@ export default {
     modeServices() {
       if (this.gameMode === 'bookinfo') {
         return [
-          { name: 'productpage' },
-          { name: 'details' },
-          { name: 'ratings' },
-          { name: 'reviews' },
+          { name: 'productpage-v1' },
+          { name: 'details-v1' },
+          { name: 'ratings-v1' },
+          { name: 'reviews-v1' },
+          { name: 'reviews-v2' },
+          { name: 'reviews-v3' },
         ];
       }
       return [
